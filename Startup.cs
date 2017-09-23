@@ -1,15 +1,32 @@
 using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using match.Models;
 
 namespace match
 {
     public class Startup
     {
+        
+        public IConfiguration Configuration { get; private set; }
+ 
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+        //Add our JSON file to the project...
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MatchContext>(options => options.UseNpgsql(Configuration["DBInfo:ConnectionString"]));
             // Add framework services.
             services.AddMvc();
             services.AddSession();

@@ -1,1 +1,8 @@
 /*Write all of your CSS here*/
+* {
+    font-family: 'Mukta Malar', sans-serif;
+}
+
+.registration-card {
+    margin-top: 25%;
+}
