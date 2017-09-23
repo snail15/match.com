@@ -15,5 +15,22 @@ namespace match.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [Route("/register")]
+        public IActionResult Register(string name, string email, string password, string confirm){
+            string _name = name;
+            string _email = email;
+            string _password = password;
+            string _confirm = confirm;
+
+            return RedirectToAction("Height");
+        }
+
+        [HttpGet]
+        [Route("/height")]
+        public IActionResult Height(){
+            return View();
+        }
     }
 }

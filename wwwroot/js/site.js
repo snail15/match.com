@@ -1,16 +1,12 @@
 // Write your Javascript code.
 function activateSlider() {
-    $("#heightSlider").roundSlider({
-    sliderType: "min-range",
-    circleShape: "custom-quarter",
-    min: 0,
-    max: 29,
-    value: 3,
-    startAngle: 45,
-    editableTooltip: false,
-    radius: 300,
-    width: 20,
-    handleShape: "dot",
+   $("#heightSlider").roundSlider({
+    radius: 200,
+    min:0,
+    max:29,
+    width: 1,
+    value: 14,
+    handleSize: "+14",
     tooltipFormat: "tooltipVal1"
 });
 }
