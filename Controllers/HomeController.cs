@@ -32,5 +32,11 @@ namespace match.Controllers
         public IActionResult Height(){
             return View();
         }
+
+        [HttpGet]
+        [Route("/bodytype")]
+        public IActionResult BodyType() {
+            return View();
+        }
     }
 }

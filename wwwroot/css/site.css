@@ -39,3 +39,8 @@ body{
     font-size: 220%;
     top: 48%;
 }
+
+#bodytype {
+    background: transparent;
+    border: 0px solid transparent;
+}
