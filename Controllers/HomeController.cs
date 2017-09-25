@@ -15,7 +15,8 @@ namespace match.Controllers
         {
             return View();
         }
-
+// =============================================================
+// =============================================================
         [HttpPost]
         [Route("/register")]
         public IActionResult Register(string name, string email, string password, string confirm){
@@ -26,17 +27,24 @@ namespace match.Controllers
 
             return RedirectToAction("Height");
         }
+// =============================================================
+// =============================================================
 
         [HttpGet]
         [Route("/height")]
         public IActionResult Height(){
             return View();
         }
+// =============================================================
+// =============================================================
 
         [HttpGet]
         [Route("/bodytype")]
         public IActionResult BodyType() {
             return View();
         }
+// =============================================================
+// =============================================================
+        
     }
 }

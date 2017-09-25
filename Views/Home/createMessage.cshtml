@@ -1,0 +1,17 @@
+<!-- ================================================================================= -->
+<!-- ================================================================================= -->
+                    <!-- PUT AT BOTTOM OF USER PROFILE PAGE! -->
+<!-- ================================================================================= -->
+<!-- ================================================================================= -->
+
+
+
+
+<form action="" method="POST">
+    <div class="form-group">
+        <label for="messageContent">Go on, say something</label>
+        <textarea  cols="50" rows="10" asp-for="messageContent" class="form-control" name="messageContent" placeholder="Start the conversation..."></textarea>
+        <span asp-validation-for="messageContent"></span>
+    </div>
+    <input class="btn btn-primary btn-small" role="button" type="submit" name="Send Message">
+</form>
