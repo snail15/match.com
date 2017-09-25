@@ -61,14 +61,14 @@ namespace match.Controllers
         {
              int? userId = HttpContext.Session.GetInt32("currentUserId");
             
-            User currentUser = context.Users.SingleOrDefault(user => user.Id == userId);
+            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
 
             if(ModelState.IsValid)
             {
                 Message newMessage = new Message 
                 {
                     messageContent = model.messageContent,
-                    senderId = currentUser.Id,
+                    senderId = currentUser.id,
                     receiverId = ,
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now
