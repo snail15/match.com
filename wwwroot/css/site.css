@@ -34,6 +34,7 @@ body{
     margin-left: 10%;
 }
 
+#ageRangeSlider .rs-tooltip,
 #heightSlider .rs-tooltip  {
     color: black;
     font-size: 220%;
@@ -43,4 +44,23 @@ body{
 #bodytype {
     background: transparent;
     border: 0px solid transparent;
+    font-size: 160%;
+    color: wheat;
+}
+
+form {
+    color: wheat;
+}
+
+span {
+    color: wheat;
+}
+
+.radio {
+    font-size: 150%;
+}
+
+.preference-label {
+    font-size: 120%;
+    margin-top: 1.3%;
 }

@@ -8,14 +8,14 @@
             <form action=""></form>
             <div class="form-group">
                 <select multiple class="form-control" id="bodytype">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="1">Slim</option>
+                    <option value="2">Average</option>
+                    <option value="3">Slightly Above Average</option>
+                    <option value="4">Bulky</option>
+                    <option value="5">Big</option>
                 </select>
             </div>
-            <a asp-controller="Home" asp-action="BodyType"><button class="btn btn-success">This is my body type</button></a>
+            <a asp-controller="Home" asp-action="GeneralInfo"><button class="btn btn-success">This is my body type</button></a>
         </div>
 
     </div>

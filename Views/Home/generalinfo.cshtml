@@ -1,0 +1,209 @@
+@{ ViewData["Title"] = "Welcome to Match!"; }
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="registration-card">
+            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <h3>About You</h3>
+            @{
+                if(ViewBag.Error != null){
+                    <h4>@ViewBag.Error</h4>
+                }
+            }
+            <form asp-controller="Home" asp-action="GeneralInfo" class="general-form form-horizontal">
+                <div class="form-group">
+                    <label for="birthday" class="col-sm-2 control-label">Birthday</label>
+                    <div class="col-sm-3">
+                        <select name="month" class="form-control" id="month">
+                            <option value="0">Month</option>
+                            <option value="1">January</option>
+                            <option value="2">Feburuary</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                         <select name="day" class="form-control" id="day">
+                            <option value="0">Day</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                         <select name="year" class="form-control" id="year">
+                             <option value="0">Year</option>
+                             @{
+                                 for(var i = 1998; i >= 1917; i--){
+                                    <option value="@i">@i</option>
+                                 }
+                             }
+                        </select>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="height" class="col-sm-2 control-label">height</label>
+                    <div class="col-sm-5">
+                        <select name="foot"class="form-control" id="foot">
+                            <option value="0">Foot</option>
+                            @{
+                                for(var i = 1; i <= 6; i++){
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                            
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <select name="inch"class="form-control" id="inch">
+                            <option value="-1">Inch</option>
+                              @{
+                                for(var i = 0; i <= 11; i++){
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                           
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="drink" class="col-sm-2 control-label">Drink</label>
+                    <div class="col-sm-10">
+                        <select name="drink" class="form-control" id="drink">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label for="religion" class="col-sm-2 control-label">Religion</label>
+                    <div class="col-sm-10">
+                        <select name="religion" class="form-control" id="religion">
+                            <option value="1">Buddhism</option>
+                            <option value="2">Christianity</option>
+                            <option value="3">Islam</option>
+                            <option value="4">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="smoke" class="col-sm-2 control-label">Smoke</label>
+                    <div class="col-sm-10">
+                        <select name="smoke" class="form-control" id="smoke">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ethinicity" class="col-sm-2 control-label">Ethinicity</label>
+                    <div class="col-sm-10">
+                        <select name="ethinicity" class="form-control" id="ethinicity">
+                            <option value="1">Asian</option>
+                            <option value="2">African-American</option>
+                            <option value="3">White</option>
+                            <option value="4">Latino</option>
+                            <option value="5">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="relationship" class="col-sm-2 control-label">Relationship</label>
+                    <div class="col-sm-10">
+                        <select name="relationship" class="form-control" id="relationship">
+                            <option value="1">Married</option>
+                            <option value="2">Seperated</option>
+                            <option value="3">Never Married</option>
+                            <option value="4">Divorced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="kids" class="col-sm-2 control-label">Kids</label>
+                    <div class="col-sm-10">
+                        <select name="kids" class="form-control" id="kids">
+                            <option value="0">Have No Kids</option>
+                            <option value="1">Have Kids</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bodytype" class="col-sm-2 control-label">Body Type</label>
+                    <div class="col-sm-10">
+                        <select name="bodytype" class="form-control" id="bodytype">
+                            <option value="1">Slim</option>
+                            <option value="2">Average</option>
+                            <option value="3">Above Average</option>
+                            <option value="4">Big</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="agerange" class="col-sm-2 control-label">Acceptable Age</label>
+                    <div class="col-sm-5">
+                        <label for="minage" class="col-sm-2 control-label">Min</label>
+                        <select name="minage" class="form-control" id="minage">
+                              @{
+                                for(var i = 18; i <= 100; i++){
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                            
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="minage" class="col-sm-2 control-label">Min</label>
+                        <select name="maxage" class="form-control" id="maxage">
+                             @{
+                                for(var i = 19; i <= 100; i++){
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Next</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>

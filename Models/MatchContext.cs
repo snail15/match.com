@@ -7,6 +7,7 @@ namespace match.Models
         { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Preference> Preferences { get; set; }
 
     }
 }
