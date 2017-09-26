@@ -59,7 +59,7 @@ namespace match.Controllers
         [Route("/sendMessage")]
         public IActionResult sendMessage(MessageViewModel model) 
         {
-             int? userId = HttpContext.Session.GetInt32("currentUserId");
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
             
             User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
 
@@ -68,8 +68,8 @@ namespace match.Controllers
                 Message newMessage = new Message 
                 {
                     messageContent = model.messageContent,
-                    senderId = currentUser.id,
-                    receiverId = ,
+                    sender = currentUser.userName,
+                    receiver = ,
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now
                 };
@@ -88,6 +88,94 @@ namespace match.Controllers
         }
 // =============================================================
 // =============================================================
+        [HttpGet]
+        [Route("messages/Inbox")]
+        public IActionResult Inbox()
+        { DateTime CurrentTime = DateTime.Now;
+
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.receiver == currentUser.userName).ToList();
+
+            foreach(var message in allMessages)
+                {
+
+                    User sender = context.Users.SingleOrDefault(user => user.userName == message.sender);
+                   
+                }
+
+            context.SaveChanges();
+
+            ViewBag.User = currentUser;
+            ViewBag.Message = allMessages;
+            return View();
+        }
+// =============================================================
+// =============================================================
+
+        [HttpGet]
+        [Route("messages/Sent")]
+        public IActionResult Sent()
+        { DateTime CurrentTime = DateTime.Now;
+
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.sender == currentUser.userName).ToList();
+
+            // foreach(var message in allMessages)
+            //     {
+
+            //         User receiver = context.Users.SingleOrDefault(user => user.userName == message.sender);
+                   
+            //     }
+
+            context.SaveChanges();
+
+            ViewBag.User = currentUser;
+            ViewBag.Message = allMessages;
+            return View();
+        }
+// =============================================================
+// =============================================================
+        [HttpGet]
+        [Route("/message/{id}")]
+        public IActionResult viewMessage(string id)
+        {
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+            
+            int messageId = Int32.Parse(id);
+            Message showingMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);
+            ViewBag.Message = showingMessage;
+            ViewBag.User = currentUser;
+            return View();
+        }
+// =============================================================
+// =============================================================
+        [HttpGet]
+        [Route("/message/delete/{id}")]
+        public IActionResult DeleteMessage(string id)
+        {
+            int messageId = Int32.Parse(id);
+            Message deletedMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);
+            context.Messages.Remove(deletedMessage);
+            context.SaveChanges();
+
+            return RedirectToAction("Inbox");
+        }
+// ========================================================================================
+// ========================================================================================  
         
+        [HttpGet]
+        [Route("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
+        }
+// ========================================================================================
+// ========================================================================================
     }
 }

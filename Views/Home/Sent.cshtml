@@ -1,0 +1,35 @@
+  <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+  
+            <h3>Sent Messages</h3>
+
+            <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+            <th>To</th>
+            <th>Date</th>
+            <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{ foreach(var message in ViewBag.Message)
+                {
+                    @if(@message.sender == @ViewBag.User.userName)
+                    {
+                    <tr>
+                        <td>@message.reciever</td>
+                        <td>@message.created_at</td>
+                        <td>
+                            <a asp-controller="Home" asp-action="viewMessage" asp-route-id="@message.Id">View</a> | 
+                            <a asp-controller="Home" asp-action="deleteMessage" asp-route-id="@message.Id">Delete!</a>
+                        </td>
+                            
+                    </tr>
+                    }
+                } 
+            }
+            </table>
+        </div>
+    </div>
+    </div>

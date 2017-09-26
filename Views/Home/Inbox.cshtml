@@ -1,0 +1,32 @@
+  <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+  
+            <h3>Inbox</h3>
+
+            <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+            <th>Sender</th>
+            <th>Date</th>
+            <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{ foreach(var message in ViewBag.Message)
+                {
+                    <tr>
+                        <td>@message.sender</td>
+                        <td>@message.created_at</td>
+                        <td>
+                            <a asp-controller="Home" asp-action="viewMessage" asp-route-id="@message.Id">View</a> | 
+                            <a asp-controller="Home" asp-action="deleteMessage" asp-route-id="@message.Id">Delete!</a>
+                        </td>
+                            
+                    </tr>
+                } 
+            }
+            </table>
+        </div>
+    </div>
+    </div>
