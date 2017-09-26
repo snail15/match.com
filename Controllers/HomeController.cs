@@ -68,12 +68,45 @@ namespace match.Controllers
                 Message newMessage = new Message 
                 {
                     messageContent = model.messageContent,
-                    sender = currentUser.userName,
-                    receiver = ,
+                    senderId = currentUser.id,
+                    receiverId = ,
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now
                 };
                 context.Add(newMessage);
+                context.SaveChanges();
+                return RedirectToAction("dashBoard");
+            } 
+            else
+            {
+                ViewBag.User = currentUser;
+                
+                return View(model);
+            }
+
+            return View(model);
+        }
+// =============================================================
+// =============================================================
+        [HttpPost]
+        [Route("/reply")]
+        public IActionResult Reply(ReplyViewModel model, int message_Id) 
+        {
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            
+            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+
+            if(ModelState.IsValid)
+            {
+                Reply newReply = new Reply 
+                {
+                    replyContent = model.replyContent,
+                    senderId = currentUser.id,
+                    messageId = message_Id,
+                    created_at = DateTime.Now,
+                    updated_at = DateTime.Now
+                };
+                context.Add(newReply);
                 context.SaveChanges();
                 return RedirectToAction("dashBoard");
             } 
@@ -96,19 +129,19 @@ namespace match.Controllers
             int? userId = HttpContext.Session.GetInt32("currentUserId");
             User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
 
-            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.receiver == currentUser.userName).ToList();
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.receiverId == currentUser.id).ToList();
 
             foreach(var message in allMessages)
                 {
 
-                    User sender = context.Users.SingleOrDefault(user => user.userName == message.sender);
+                    User sender = context.Users.SingleOrDefault(user => user.id == message.senderId);
                    
                 }
 
             context.SaveChanges();
 
             ViewBag.User = currentUser;
-            ViewBag.Message = allMessages;
+            ViewBag.Messages = allMessages;
             return View();
         }
 // =============================================================
@@ -122,19 +155,19 @@ namespace match.Controllers
             int? userId = HttpContext.Session.GetInt32("currentUserId");
             User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
 
-            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.sender == currentUser.userName).ToList();
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.senderId == currentUser.id).ToList();
 
             // foreach(var message in allMessages)
             //     {
 
-            //         User receiver = context.Users.SingleOrDefault(user => user.userName == message.sender);
+            //         User receiver = context.Users.SingleOrDefault(user => user.id == message.senderId);
                    
             //     }
 
             context.SaveChanges();
 
             ViewBag.User = currentUser;
-            ViewBag.Message = allMessages;
+            ViewBag.Messages = allMessages;
             return View();
         }
 // =============================================================
@@ -148,7 +181,7 @@ namespace match.Controllers
             
             int messageId = Int32.Parse(id);
             Message showingMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);
-            ViewBag.Message = showingMessage;
+            ViewBag.Messages = showingMessage;
             ViewBag.User = currentUser;
             return View();
         }
