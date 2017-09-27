@@ -1,26 +1,24 @@
-@foreach(var message in ViewBag.Messages)
-{
-    @if(ViewBag.User.id != ViewBag.Message.senderId)
-    {
-        <h5>Message From: @ViewBag.Message.sender</h5>
-        <h6>@ViewBag.Message.created_at</h6>
-        <p>@ViewBag.Message.messageContent</p>
-
-        <a class="btn btn-primary btn-lg" asp-controller ="Home" asp-action="Reply" role="button">Reply</a>
-<!-- ========================================================================= -->
-<!-- ========================================================================= -->
-        @if(@reply.messageId == @message.Id)
+ @if(ViewBag.User.id != ViewBag.ThisMessage.senderId)
         {
-        <h5>Reply From: @ViewBag.Message.senderId</h5>
-        <h6>@ViewBag.Reply.created_at</h6>
-        <p>@ViewBag.Reply.replyContent</p>
+            <h5>From: @ViewBag.ThisMessage.senderId</h5>
+            <h6>@ViewBag.ThisMessage.created_at</h6>
+            <p>@ViewBag.ThisMessage.messageContent</p>
+
+        }else{
+            <h5>To: @ViewBag.ThisMessage.receiverId</h5>
+            <h6>@ViewBag.ThisMessage.created_at</h6>
+            <p>@ViewBag.ThisMessage.messageContent</p>
         }
+<!-- ========================================================================= -->
+<!-- ========================================================================= -->
 
-    }
+@if(@ViewBag.InMessages.senderId == ViewBag.User.id || ReceiverId == ViewBag.User.id)
+   { 
+       
 
-        @if(ViewBag.User.id != ViewBag.Message.senderId)
-        {
-            <form action="Message" method="POST">
+      
+        
+            <form action="sendMessage" method="POST">
                 <div class="form-group">
                     <label for="messageContent">Reply</label><br>
                     <textarea  cols="50" rows="10" asp-for="messageContent" class="form-control" name="messageContent" placeholder="Say something back..."></textarea>
@@ -28,9 +26,8 @@
                 </div>
                 <br><input class="btn btn-primary btn-small" role="button" type="submit" name="Reply">
             </form>
-        }
+    }
 
-       
+  
 
     
-}

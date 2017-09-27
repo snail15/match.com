@@ -56,11 +56,12 @@ namespace match.Controllers
 // =============================================================
 // =============================================================
         [HttpPost]
-        [Route("/sendMessage")]
-        public IActionResult sendMessage(MessageViewModel model) 
+        [Route("/user/{id}/sendMessage")]
+        public IActionResult sendMessage(MessageViewModel model, string id) 
         {
             int? userId = HttpContext.Session.GetInt32("currentUserId");
-            
+            int Receiver = Int32.Parse(id);
+
             User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
 
             if(ModelState.IsValid)
@@ -69,7 +70,7 @@ namespace match.Controllers
                 {
                     messageContent = model.messageContent,
                     senderId = currentUser.id,
-                    receiverId = ,
+                    receiverId = Receiver,
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now
                 };
@@ -88,39 +89,7 @@ namespace match.Controllers
         }
 // =============================================================
 // =============================================================
-        [HttpPost]
-        [Route("/reply")]
-        public IActionResult Reply(ReplyViewModel model, int message_Id) 
-        {
-            int? userId = HttpContext.Session.GetInt32("currentUserId");
-            
-            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
-
-            if(ModelState.IsValid)
-            {
-                Reply newReply = new Reply 
-                {
-                    replyContent = model.replyContent,
-                    senderId = currentUser.id,
-                    messageId = message_Id,
-                    created_at = DateTime.Now,
-                    updated_at = DateTime.Now
-                };
-                context.Add(newReply);
-                context.SaveChanges();
-                return RedirectToAction("dashBoard");
-            } 
-            else
-            {
-                ViewBag.User = currentUser;
-                
-                return View(model);
-            }
-
-            return View(model);
-        }
-// =============================================================
-// =============================================================
+    
         [HttpGet]
         [Route("messages/Inbox")]
         public IActionResult Inbox()
@@ -141,7 +110,7 @@ namespace match.Controllers
             context.SaveChanges();
 
             ViewBag.User = currentUser;
-            ViewBag.Messages = allMessages;
+            ViewBag.InMessages = allMessages;
             return View();
         }
 // =============================================================
@@ -157,17 +126,17 @@ namespace match.Controllers
 
             List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.senderId == currentUser.id).ToList();
 
-            // foreach(var message in allMessages)
-            //     {
+            foreach(var message in allMessages)
+                {
 
-            //         User receiver = context.Users.SingleOrDefault(user => user.id == message.senderId);
+                    User receiver = context.Users.SingleOrDefault(user => user.id == message.senderId);
                    
-            //     }
+                }
 
             context.SaveChanges();
 
             ViewBag.User = currentUser;
-            ViewBag.Messages = allMessages;
+            ViewBag.OutMessages = allMessages;
             return View();
         }
 // =============================================================
@@ -181,7 +150,7 @@ namespace match.Controllers
             
             int messageId = Int32.Parse(id);
             Message showingMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);
-            ViewBag.Messages = showingMessage;
+            ViewBag.ThisMessage = showingMessage;
             ViewBag.User = currentUser;
             return View();
         }

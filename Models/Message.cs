@@ -11,6 +11,8 @@ namespace match.Models
         public string messageContent {get; set;}
         public DateTime created_at {get; set;}
         public DateTime updated_at {get; set;}
-        public List<Reply> Replies { get; set; }
+        public User Sender { get; set; }
+        public User Receiver { get; set; }
     }
+    
 }
