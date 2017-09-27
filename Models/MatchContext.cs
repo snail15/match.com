@@ -8,7 +8,7 @@ namespace match.Models
         public DbSet<Userprofile> Userprofiles { get; set; }
         public DbSet<Userpreference> Userpreferences { get; set; }
         public DbSet<Userpayment> Userpayments { get; set; }
-        public DbSet<Userpayment> Userbioactivities { get; set; }
+        public DbSet<Userbioactivity> Userbioactivities { get; set; }
         public MatchContext(DbContextOptions<MatchContext> options) : base(options) { }
     }
 }

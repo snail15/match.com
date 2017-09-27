@@ -56,17 +56,35 @@ namespace match.Migrations
                 {
                     UserdetailId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    CVV2 = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
+                    age = table.Column<int>(nullable: false),
+                    birthday = table.Column<string>(nullable: true),
+                    ccexpires = table.Column<string>(nullable: true),
+                    ccnumber = table.Column<string>(nullable: true),
+                    cctype = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
+                    color = table.Column<string>(nullable: true),
                     created_at = table.Column<DateTime>(nullable: false),
+                    email = table.Column<string>(nullable: true),
                     gender = table.Column<string>(nullable: true),
                     givenname = table.Column<string>(nullable: true),
+                    height = table.Column<string>(nullable: true),
+                    maidenname = table.Column<string>(nullable: true),
                     middleinitial = table.Column<string>(nullable: true),
                     nameset = table.Column<string>(nullable: true),
+                    nationalid = table.Column<string>(nullable: true),
+                    occupation = table.Column<string>(nullable: true),
+                    password = table.Column<string>(nullable: true),
                     state = table.Column<string>(nullable: true),
                     streetaddress = table.Column<string>(nullable: true),
                     surname = table.Column<string>(nullable: true),
+                    telephonecountrycode = table.Column<int>(nullable: false),
+                    telephonenumber = table.Column<string>(nullable: true),
+                    tropicalzodiac = table.Column<string>(nullable: true),
                     updated_at = table.Column<DateTime>(nullable: false),
+                    username = table.Column<string>(nullable: true),
+                    weight = table.Column<string>(nullable: true),
                     zipcode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -81,7 +99,7 @@ namespace match.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Userpayment",
+                name: "Userpayments",
                 columns: table => new
                 {
                     UserpaymentId = table.Column<int>(nullable: false)
@@ -119,9 +137,9 @@ namespace match.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Userpayment", x => x.UserpaymentId);
+                    table.PrimaryKey("PK_Userpayments", x => x.UserpaymentId);
                     table.ForeignKey(
-                        name: "FK_Userpayment_Users_UserId",
+                        name: "FK_Userpayments_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -231,14 +249,85 @@ namespace match.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Userbioactivities",
+                columns: table => new
+                {
+                    UserbioactivityId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    UserId = table.Column<int>(nullable: false),
+                    UserdetailId = table.Column<int>(nullable: false),
+                    UserpreferenceId = table.Column<int>(nullable: false),
+                    UserprofileId = table.Column<int>(nullable: false),
+                    aboutme = table.Column<string>(nullable: true),
+                    beach = table.Column<bool>(nullable: false),
+                    cooking = table.Column<bool>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
+                    hiking = table.Column<bool>(nullable: false),
+                    movies = table.Column<bool>(nullable: false),
+                    reading = table.Column<bool>(nullable: false),
+                    romance = table.Column<bool>(nullable: false),
+                    sports = table.Column<bool>(nullable: false),
+                    travelling = table.Column<bool>(nullable: false),
+                    updated_at = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Userbioactivities", x => x.UserbioactivityId);
+                    table.ForeignKey(
+                        name: "FK_Userbioactivities_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Userbioactivities_Userdetails_UserdetailId",
+                        column: x => x.UserdetailId,
+                        principalTable: "Userdetails",
+                        principalColumn: "UserdetailId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Userbioactivities_Userpreferences_UserpreferenceId",
+                        column: x => x.UserpreferenceId,
+                        principalTable: "Userpreferences",
+                        principalColumn: "UserpreferenceId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Userbioactivities_Userprofiles_UserprofileId",
+                        column: x => x.UserprofileId,
+                        principalTable: "Userprofiles",
+                        principalColumn: "UserprofileId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Userbioactivities_UserId",
+                table: "Userbioactivities",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Userbioactivities_UserdetailId",
+                table: "Userbioactivities",
+                column: "UserdetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Userbioactivities_UserpreferenceId",
+                table: "Userbioactivities",
+                column: "UserpreferenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Userbioactivities_UserprofileId",
+                table: "Userbioactivities",
+                column: "UserprofileId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Userdetails_UserId",
                 table: "Userdetails",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Userpayment_UserId",
-                table: "Userpayment",
+                name: "IX_Userpayments_UserId",
+                table: "Userpayments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -270,7 +359,10 @@ namespace match.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Userpayment");
+                name: "Userbioactivities");
+
+            migrationBuilder.DropTable(
+                name: "Userpayments");
 
             migrationBuilder.DropTable(
                 name: "Userpreferences");

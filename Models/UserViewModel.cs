@@ -13,7 +13,6 @@ namespace match.Models
 
         [Required(ErrorMessage="Please include a password")]
         [MinLength(8, ErrorMessage="The password has to be at least 8 characters long")]
-        [DataType(DataType.Password)]
         public string password {get; set;}
 
         [Required(ErrorMessage="Please confirm the password entered")]
@@ -21,7 +20,7 @@ namespace match.Models
         public string confirmpass {get; set;}
 
         [Required(ErrorMessage="Please include your birthday")]
-        // [DataType(DataType.DateTime)]        
+        [DataType(DataType.DateTime)]        
         public DateTime birthday {get; set;}
     }
 }

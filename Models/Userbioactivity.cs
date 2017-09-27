@@ -3,7 +3,7 @@ namespace match.Models
 {
     public class Userbioactivity : BaseEntity 
     {
-        public int UserbioactivitiesId {get; set;}
+        public int UserbioactivityId {get; set;}
         public User User {get; set;}
         public int UserId {get; set;}
         public Userdetail Userdetail {get; set;}

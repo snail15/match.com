@@ -8,9 +8,10 @@ using match.Models;
 namespace match.Migrations
 {
     [DbContext(typeof(MatchContext))]
-    partial class MatchContextModelSnapshot : ModelSnapshot
+    [Migration("20170927175429_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
@@ -21,15 +22,63 @@ namespace match.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CVV2");
+
+                    b.Property<int>("age");
+
                     b.Property<DateTime>("birthday");
+
+                    b.Property<string>("ccexpires");
+
+                    b.Property<string>("ccnumber");
+
+                    b.Property<string>("cctype");
+
+                    b.Property<string>("city");
+
+                    b.Property<string>("color");
 
                     b.Property<DateTime>("created_at");
 
                     b.Property<string>("email");
 
+                    b.Property<string>("gender");
+
+                    b.Property<string>("givenname");
+
+                    b.Property<string>("height");
+
+                    b.Property<string>("maidenname");
+
+                    b.Property<string>("middleinitial");
+
+                    b.Property<string>("nameset");
+
+                    b.Property<string>("nationalid");
+
+                    b.Property<string>("occupation");
+
                     b.Property<string>("password");
 
+                    b.Property<string>("state");
+
+                    b.Property<string>("streetaddress");
+
+                    b.Property<string>("surname");
+
+                    b.Property<int>("telephonecountrycode");
+
+                    b.Property<string>("telephonenumber");
+
+                    b.Property<string>("tropicalzodiac");
+
                     b.Property<DateTime>("updated_at");
+
+                    b.Property<string>("username");
+
+                    b.Property<string>("weight");
+
+                    b.Property<string>("zipcode");
 
                     b.HasKey("UserId");
 
@@ -89,19 +138,45 @@ namespace match.Migrations
                     b.Property<int>("UserdetailId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CVV2");
+
                     b.Property<int>("UserId");
+
+                    b.Property<int>("age");
+
+                    b.Property<string>("birthday");
+
+                    b.Property<string>("ccexpires");
+
+                    b.Property<string>("ccnumber");
+
+                    b.Property<string>("cctype");
 
                     b.Property<string>("city");
 
+                    b.Property<string>("color");
+
                     b.Property<DateTime>("created_at");
+
+                    b.Property<string>("email");
 
                     b.Property<string>("gender");
 
                     b.Property<string>("givenname");
 
+                    b.Property<string>("height");
+
+                    b.Property<string>("maidenname");
+
                     b.Property<string>("middleinitial");
 
                     b.Property<string>("nameset");
+
+                    b.Property<string>("nationalid");
+
+                    b.Property<string>("occupation");
+
+                    b.Property<string>("password");
 
                     b.Property<string>("state");
 
@@ -109,7 +184,17 @@ namespace match.Migrations
 
                     b.Property<string>("surname");
 
+                    b.Property<int>("telephonecountrycode");
+
+                    b.Property<string>("telephonenumber");
+
+                    b.Property<string>("tropicalzodiac");
+
                     b.Property<DateTime>("updated_at");
+
+                    b.Property<string>("username");
+
+                    b.Property<string>("weight");
 
                     b.Property<string>("zipcode");
 
@@ -129,15 +214,61 @@ namespace match.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<int>("age");
+
+                    b.Property<string>("birthday");
+
                     b.Property<string>("ccexpires");
 
                     b.Property<string>("ccnumber");
 
                     b.Property<string>("cctype");
 
+                    b.Property<string>("city");
+
+                    b.Property<string>("color");
+
                     b.Property<DateTime>("created_at");
 
+                    b.Property<string>("email");
+
+                    b.Property<string>("gender");
+
+                    b.Property<string>("givenname");
+
+                    b.Property<string>("height");
+
+                    b.Property<string>("maidenname");
+
+                    b.Property<string>("middleinitial");
+
+                    b.Property<string>("nameset");
+
+                    b.Property<string>("nationalid");
+
+                    b.Property<string>("occupation");
+
+                    b.Property<string>("password");
+
+                    b.Property<string>("state");
+
+                    b.Property<string>("streetaddress");
+
+                    b.Property<string>("surname");
+
+                    b.Property<int>("telephonecountrycode");
+
+                    b.Property<string>("telephonenumber");
+
+                    b.Property<string>("tropicalzodiac");
+
                     b.Property<DateTime>("updated_at");
+
+                    b.Property<string>("username");
+
+                    b.Property<string>("weight");
+
+                    b.Property<string>("zipcode");
 
                     b.HasKey("UserpaymentId");
 
@@ -195,25 +326,75 @@ namespace match.Migrations
                     b.Property<int>("UserprofileId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CVV2");
+
                     b.Property<string>("Relationship");
 
                     b.Property<int>("UserId");
 
                     b.Property<int>("UserdetailId");
 
+                    b.Property<int>("age");
+
+                    b.Property<string>("birthday");
+
                     b.Property<string>("bodytype");
+
+                    b.Property<string>("ccexpires");
+
+                    b.Property<string>("ccnumber");
+
+                    b.Property<string>("cctype");
+
+                    b.Property<string>("city");
+
+                    b.Property<string>("color");
 
                     b.Property<DateTime>("created_at");
 
+                    b.Property<string>("email");
+
+                    b.Property<string>("gender");
+
+                    b.Property<string>("givenname");
+
                     b.Property<string>("height");
+
+                    b.Property<string>("maidenname");
+
+                    b.Property<string>("middleinitial");
+
+                    b.Property<string>("nameset");
+
+                    b.Property<string>("nationalid");
+
+                    b.Property<string>("occupation");
+
+                    b.Property<string>("password");
 
                     b.Property<int?>("salary");
 
                     b.Property<string>("smoke");
 
+                    b.Property<string>("state");
+
+                    b.Property<string>("streetaddress");
+
+                    b.Property<string>("surname");
+
+                    b.Property<int>("telephonecountrycode");
+
+                    b.Property<string>("telephonenumber");
+
+                    b.Property<string>("tropicalzodiac");
+
                     b.Property<DateTime>("updated_at");
 
+                    b.Property<string>("username");
+
                     b.Property<string>("weight");
+
+                    b.Property<string>("zipcode");
 
                     b.HasKey("UserprofileId");
 
