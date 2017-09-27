@@ -1,27 +1,26 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace match.Models
 {
     public class UserViewModel : BaseEntity {
         [Key]
-        public int Id { get; set;}
+        public int UserId {get; set;}
 
-        [Required(ErrorMessage="You have a name??")]
-        [MinLength(3, ErrorMessage="At least 3 chars!")]
-        [MaxLength(20, ErrorMessage="It's too long!!")]
-        public string Name {get; set;}
+        [Required(ErrorMessage="Please include an e-mail address")]
+        public string email {get; set;}
 
-        [Required(ErrorMessage="Please provide email")]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage="You want Password?")]
-        [MinLength(8, ErrorMessage="At least 8 chars!")]
+        [Required(ErrorMessage="Please include a password")]
+        [MinLength(8, ErrorMessage="The password has to be at least 8 characters long")]
         [DataType(DataType.Password)]
-        public string Password {get; set;}
+        public string password {get; set;}
 
-        [Required(ErrorMessage="Plase confirm password")]
-        [Compare("Password", ErrorMessage="It doesn't match!! Typo?")]
-        public string Confirm {get; set;}
+        [Required(ErrorMessage="Please confirm the password entered")]
+        [Compare("password", ErrorMessage="Password confirmation does not match")]
+        public string confirmpass {get; set;}
+
+        [Required(ErrorMessage="Please include your birthday")]
+        // [DataType(DataType.DateTime)]        
+        public DateTime birthday {get; set;}
     }
 }
