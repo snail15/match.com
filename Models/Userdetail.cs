@@ -4,7 +4,7 @@ namespace match.Models
     public class Userdetail : BaseEntity 
     {
         public int UserdetailId {get; set;}
-        public User User {get; set;}
+
         public int UserId {get; set;}
         public string gender {get; set;} //varchar(6) NOT NULL,
         public string nameset {get; set;}//varchar(25) NOT NULL,
