@@ -8,6 +8,7 @@ namespace match.Models
         public int UserId {get; set;}
 
         [Required(ErrorMessage="Please include an e-mail address")]
+        [EmailAddress]
         public string email {get; set;}
 
         [Required(ErrorMessage="Please include a password")]
