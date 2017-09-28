@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace match.Controllers
 {
-    public class HomeController : Controller
+    public class MessageController : Controller
     {
         private MatchContext context;
 
-        public HomeController(MatchContext _context)
+        public MessageController(MatchContext _context)
         {
             context = _context;
         }
