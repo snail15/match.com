@@ -145,10 +145,10 @@ namespace match.Controllers
         [Route("/message/{id}")]
         public IActionResult viewMessage(string id)
         {
-            DateTime CurrentTime = DateTime.Now;
+            
             int? userId = HttpContext.Session.GetInt32("currentUserId");
             User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
-            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.created_at > CurrentTime).ToList();
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).ToList();
             int messageId = Int32.Parse(id);
             Message showingMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);
             ViewBag.ThisMessage = showingMessage;

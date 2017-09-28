@@ -13,7 +13,7 @@
 <!-- ========================================================================= -->
 @{ foreach(var message in ViewBag.AllMessages)
     {
-        @if((@message.senderId == ViewBag.ThisMessage.senderId && @message.receiverId == ViewBag.ThisMessage.receiverId)||               (@message.senderId == ViewBag.ThisMessage.receiverId && @message.receiverId == ViewBag.ThisMessage.senderId))
+        @if((@message.senderId == ViewBag.ThisMessage.senderId && @message.receiverId == ViewBag.ThisMessage.receiverId)||(@message.senderId == ViewBag.ThisMessage.receiverId && @message.receiverId == ViewBag.ThisMessage.senderId))
             { 
             
                 @if(ViewBag.User.id != @message.senderId)
@@ -32,12 +32,15 @@
             }
     }
 } 
+<!-- ========================================================================= -->
+<!-- ========================================================================= -->
 
+<div class="container fixed-bottom">
     <form action="sendMessage" method="POST">
         <div class="form-group">
-            <label for="messageContent">Reply</label><br>
-            <textarea  cols="50" rows="10" asp-for="messageContent" class="form-control" name="messageContent" placeholder="Say something back..."></textarea>
+            <textarea  cols="50" rows="10" asp-for="messageContent" class="form-control" name="messageContent" placeholder="Say Something Back..."></textarea>
             <span asp-validation-for="messageContent"></span>
         </div>
-        <br><input class="btn btn-primary btn-small" role="button" type="submit" name="Reply">
+        <br><input class="btn btn-primary btn-small" role="button" type="submit" name="Send Message">
     </form>
+</div>
