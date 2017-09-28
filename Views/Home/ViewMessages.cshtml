@@ -16,18 +16,18 @@
         @if((@message.senderId == ViewBag.ThisMessage.senderId && @message.receiverId == ViewBag.ThisMessage.receiverId)||               (@message.senderId == ViewBag.ThisMessage.receiverId && @message.receiverId == ViewBag.ThisMessage.senderId))
             { 
             
-          @if(ViewBag.User.id != @message.senderId)
-            {
-                <h5>From: @message.senderId</h5>
-                <h6>@message.created_at</h6>
-                <p>@message.messageContent</p>
-                <hr>
-            }else{
-                <h5>To:@message.receiverId</h5>
-                <h6>@message.created_at</h6>
-                <p>@message.messageContent</p>
-                <hr>
-            }
+                @if(ViewBag.User.id != @message.senderId)
+                    {
+                        <h5>From:@message.senderId</h5>
+                        <h6>@message.created_at</h6>
+                        <p>@message.messageContent</p>
+                        <hr>
+                    }else{
+                        <h5>To:@message.receiverId</h5>
+                        <h6>@message.created_at</h6>
+                        <p>@message.messageContent</p>
+                        <hr>
+                    }
               
             }
     }
