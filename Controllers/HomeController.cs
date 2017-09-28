@@ -156,7 +156,7 @@ namespace match.Controllers
 
             context.Add(newPreference);
             context.SaveChanges();
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("ProfilePic");
         }
 
         [HttpGet]
