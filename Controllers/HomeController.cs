@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using match.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore; // <-- needed to include sub models
 using System.Linq;
+using Microsoft.AspNetCore.Session;
+using match.Models;
 
 namespace match.Controllers
 {
     public class HomeController : Controller
     {
-        private MatchContext context;
+        private MatchContext _context;
 
-        public HomeController(MatchContext _context)
+        public HomeController(MatchContext context)
         {
-            context = _context;
+            _context = context;
         }
         // GET: /Home/
         [HttpGet]
@@ -38,8 +40,8 @@ namespace match.Controllers
                 };
                 PasswordHasher<User> hasher = new PasswordHasher<User>();
                 newUser.password = hasher.HashPassword(newUser, model.password);
-                context.Add(newUser);
-                context.SaveChanges();
+                _context.Add(newUser);
+                _context.SaveChanges();
                 HttpContext.Session.SetInt32("currentUserId", newUser.UserId);
                 return RedirectToAction("GeneralInfo");
             } 
@@ -50,11 +52,105 @@ namespace match.Controllers
            
         }
 
+        [HttpPost]
+        [Route("/login")]
+        public IActionResult Login(string email, string password)
+        {
+            User loginuser = _context.Users.SingleOrDefault(user => user.email == email);
+            if(loginuser == null)
+            {
+                TempData["UsernameError"] = "Incorrect username";
+                // TempData["UsernameError"] = ViewBag.UsernameError;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                PasswordHasher<User> hasher = new PasswordHasher<User>();
+                if(hasher.VerifyHashedPassword(loginuser, loginuser.password, password) != 0)
+                {
+                    HttpContext.Session.SetInt32("currentUserId", loginuser.UserId);
+                    return RedirectToAction("Preference");
+                } 
+                else 
+                {
+                    TempData["PasswordError"] = "Incorrect password";
+                    // TempData["PasswordError"] = ViewBag.PasswordError;
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+
 
         [HttpGet]
         [Route("/generalinfo")]
-        public IActionResult GeneralInfo() {
-            return View();
+        public IActionResult GeneralInfo() 
+        {
+            // int? userId = HttpContext.Session.GetInt32("currentUserId");
+            // if(userId == null)
+            // {
+            //     TempData["LogErrors"] = "You need to log in first";
+            //     return RedirectToAction("Index");
+            // }
+            // else
+            // {
+                return View();
+            // }
+        }
+
+        [HttpGet]
+        [Route("/adddetails")]
+        public IActionResult Adddetails(UserdetailViewModel model) 
+        {
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            if(userId == null)
+            {
+                TempData["LogErrors"] = "You need to log in first";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if(ModelState.IsValid)
+                {
+                    // var today = DateTime.Today;
+                    // // Calculate the age.
+                    // var age = today.Year - model.birthday.Year;
+                    // // Go back to the year the person was born in case of a leap year
+                    // if (birthdate > today.AddYears(-age)) age--;
+                    Userdetail newDetail = new Userdetail{
+                        gender = model.gender,
+                        givenname = model.givenname,
+                        middleinitial = model.middleinitial,
+                        surname = model.surname,
+                        streetaddress = model.streetaddress,
+                        city = model.city,
+                        state = model.state,
+                        // zipcode = model.zipcode,
+                    };
+                    _context.Add(newDetail);
+                    _context.SaveChanges();
+                    Userprofile userprofile = _context.Userprofiles.SingleOrDefault(profile => profile.UserId == userId);
+                    if(userprofile == null)
+                    {
+                        // TempData["UsernameError"] = ViewBag.UsernameError;
+                        return RedirectToAction("Profile");
+                    }
+                    else
+                    {
+                        return RedirectToAction("GeneralInfo");
+                    }
+                } 
+                else 
+                {
+                    return View();
+                }
+            }
+        }
+        [HttpGet]
+        [Route("/profile")]
+        public IActionResult Profile() 
+        {
+            ViewBag.statuspage = "weight";
+            return View("userprofile");
         }
 
         // [HttpPost]
@@ -83,7 +179,7 @@ namespace match.Controllers
 
         //     // Add data to the current user             
         //     int? userId = HttpContext.Session.GetInt32("currentUserId");
-        //     User currentUser = context.Users.SingleOrDefault(u => u.Id == userId);
+        //     User currentUser = _context.Users.SingleOrDefault(u => u.Id == userId);
         //     currentUser.Age = age;
         //     currentUser.Birthday = birthday;
         //     currentUser.Height = height;
@@ -94,7 +190,7 @@ namespace match.Controllers
         //     currentUser.MinAge = intMinAge;
         //     currentUser.MaxAge = intMaxAge;
         //     currentUser.BodyType = intBodyType;
-        //     context.SaveChanges();
+        //     _context.SaveChanges();
         //     return RedirectToAction("Preference");
 
         // }
@@ -136,15 +232,33 @@ namespace match.Controllers
 
         //     };
 
-        //     context.Add(newPreference);
-        //     context.SaveChanges();
+        //     _context.Add(newPreference);
+        //     _context.SaveChanges();
         //     return RedirectToAction("Dashboard");
         // }
 
+        // [HttpGet]
+        // [Route("/dashboard")]
+        // public IActionResult Dashboard() {
+        //     return View();
+        // }
+
         [HttpGet]
-        [Route("/dashboard")]
-        public IActionResult Dashboard() {
-            return View();
+        [Route("logout")]
+        public IActionResult Logout()
+        {
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            if(userId == null)
+            {
+                TempData["LogErrors"] = "You need to log in first";
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index");
+            }
         }
 
 

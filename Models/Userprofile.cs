@@ -4,10 +4,7 @@ namespace match.Models
     public class Userprofile : BaseEntity 
     {
         public int UserprofileId {get; set;}
-        
         public int UserId {get; set;}
-       
-        
         public string bodytype {get;set;}
         public string smoke {get; set;}
         public int? salary {get; set;}
