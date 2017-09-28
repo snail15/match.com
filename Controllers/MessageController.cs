@@ -62,14 +62,14 @@ namespace match.Controllers
             int? userId = HttpContext.Session.GetInt32("currentUserId");
             int Receiver = Int32.Parse(id);
 
-            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+            User currentUser = context.Users.SingleOrDefault(user => user.Id == userId);
 
             if(ModelState.IsValid)
             {
                 Message newMessage = new Message 
                 {
                     messageContent = model.messageContent,
-                    senderId = currentUser.id,
+                    senderId = currentUser.Id,
                     receiverId = Receiver,
                     created_at = DateTime.Now,
                     updated_at = DateTime.Now
@@ -96,14 +96,14 @@ namespace match.Controllers
         { DateTime CurrentTime = DateTime.Now;
 
             int? userId = HttpContext.Session.GetInt32("currentUserId");
-            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+            User currentUser = context.Users.SingleOrDefault(user => user.Id == userId);
 
-            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.receiverId == currentUser.id).ToList();
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.receiverId == currentUser.Id).ToList();
 
             foreach(var message in allMessages)
                 {
 
-                    User sender = context.Users.SingleOrDefault(user => user.id == message.senderId);
+                    User sender = context.Users.SingleOrDefault(user => user.Id == message.senderId);
                    
                 }
 
@@ -122,14 +122,14 @@ namespace match.Controllers
         { DateTime CurrentTime = DateTime.Now;
 
             int? userId = HttpContext.Session.GetInt32("currentUserId");
-            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+            User currentUser = context.Users.SingleOrDefault(user => user.Id == userId);
 
-            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.senderId == currentUser.id).ToList();
+            List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).Where(message => message.senderId == currentUser.Id).ToList();
 
             foreach(var message in allMessages)
                 {
 
-                    User receiver = context.Users.SingleOrDefault(user => user.id == message.senderId);
+                    User receiver = context.Users.SingleOrDefault(user => user.Id == message.senderId);
                    
                 }
 
@@ -147,7 +147,7 @@ namespace match.Controllers
         {
             
             int? userId = HttpContext.Session.GetInt32("currentUserId");
-            User currentUser = context.Users.SingleOrDefault(user => user.id == userId);
+            User currentUser = context.Users.SingleOrDefault(user => user.Id == userId);
             List<Message> allMessages = context.Messages.OrderBy(message => message.created_at).ToList();
             int messageId = Int32.Parse(id);
             Message showingMessage = context.Messages.SingleOrDefault(message => message.Id == messageId);

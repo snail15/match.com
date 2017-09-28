@@ -148,7 +148,7 @@ namespace match.Controllers
                 Relationship = intRelationship,
                 Drink = intDrink,
                 Religion = intReligion,
-                Etnicity = intEthnicity,
+                Ethnicity = intEthnicity,
                 BodyType = intBodyType,
                 Height = height
 
