@@ -23,7 +23,7 @@ namespace match.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            return View();
+            return View("UserProfile");
         }
 // =============================================================
 // =============================================================
