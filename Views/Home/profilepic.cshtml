@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="registration-card">
+            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <form method="post" asp-action="Upload" asp-controller="Home" enctype="multipart/form-data">
+                <input type="file" name="file" accept="imgage/*"/>
+                <input type="submit" value="upload"/>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>

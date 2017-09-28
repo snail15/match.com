@@ -8,9 +8,10 @@ using match.Models;
 namespace match.Migrations
 {
     [DbContext(typeof(MatchContext))]
-    partial class MatchContextModelSnapshot : ModelSnapshot
+    [Migration("20170927200719_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
@@ -64,8 +65,6 @@ namespace match.Migrations
                     b.Property<int>("Ethnicity");
 
                     b.Property<int>("Height");
-
-                    b.Property<string>("ImgUrl");
 
                     b.Property<int>("Kid");
 

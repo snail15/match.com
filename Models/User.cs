@@ -34,6 +34,10 @@ namespace match.Models
         public int MinAge { get; set; }
         public int MaxAge { get; set; }
 
+        public string Description { get; set; }
+
+        public string ImgUrl { get; set; }
+
 
 
     }
