@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="registration-card">
+            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <h3 class="example-card">Choose Cool Profile Picture</h3>
+             <div class="example-card card">
+                <img class="card-img-top" src="~/images/profile.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Example Profile Picture</h4>
+                    <form class="profile-form" method="post" asp-action="Upload" asp-controller="Home" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Example file input</label>
+                            <input type="file" name="file" accept="imgage/*" id="exampleFormControlFile1/">
+                        </div>
+                            <button class="btn btn-success" type="submit">I want this picture</button>
+                     </form>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>

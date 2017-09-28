@@ -1,0 +1,23 @@
+@{ ViewData["Title"] = "Welcome to Match!"; }
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="registration-card">
+            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <form action=""></form>
+            <div class="form-group">
+                <select multiple class="form-control" id="bodytype">
+                    <option value="1">Slim</option>
+                    <option value="2">Average</option>
+                    <option value="3">Slightly Above Average</option>
+                    <option value="4">Bulky</option>
+                    <option value="5">Big</option>
+                </select>
+            </div>
+            <a asp-controller="Home" asp-action="GeneralInfo"><button class="btn btn-success">This is my body type</button></a>
+        </div>
+
+    </div>
+    <div class="col-sm-3"></div>
+</div>

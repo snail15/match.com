@@ -20,5 +20,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+    <PackageReference Include="microsoft.aspnetcore.identity.entityframeworkcore" Version="1.1.1" />
   </ItemGroup>
 </Project>

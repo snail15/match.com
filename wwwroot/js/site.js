@@ -8,6 +8,16 @@ function activateSlider() {
     value: 14,
     handleSize: "+14",
     tooltipFormat: "tooltipVal1"
+    });
+
+    $("#ageRangeSlider").roundSlider({
+    radius: 200,
+    width: 10,
+    min: 18,
+    max: 100,
+    handleSize: "+10",
+    sliderType: "range",
+    value: "25,40"
 });
 }
 
@@ -25,4 +35,13 @@ function tooltipVal1(args) {
 
 $(document).ready(function () {
   activateSlider();
+
+  $(".height-btn").click(function(){
+      var height = $("#heightSlider").getValue();
+      $.ajax({
+        type: "POST",
+        url: "/Home/Height",
+        data: height
+        });
+  })
 });
