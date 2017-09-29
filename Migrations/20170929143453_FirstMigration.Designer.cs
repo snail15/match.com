@@ -8,8 +8,8 @@ using match.Models;
 namespace match.Migrations
 {
     [DbContext(typeof(MatchContext))]
-    [Migration("20170927181720_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20170929143453_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,63 +22,15 @@ namespace match.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CVV2");
-
-                    b.Property<int>("age");
-
                     b.Property<DateTime>("birthday");
-
-                    b.Property<string>("ccexpires");
-
-                    b.Property<string>("ccnumber");
-
-                    b.Property<string>("cctype");
-
-                    b.Property<string>("city");
-
-                    b.Property<string>("color");
 
                     b.Property<DateTime>("created_at");
 
                     b.Property<string>("email");
 
-                    b.Property<string>("gender");
-
-                    b.Property<string>("givenname");
-
-                    b.Property<string>("height");
-
-                    b.Property<string>("maidenname");
-
-                    b.Property<string>("middleinitial");
-
-                    b.Property<string>("nameset");
-
-                    b.Property<string>("nationalid");
-
-                    b.Property<string>("occupation");
-
                     b.Property<string>("password");
 
-                    b.Property<string>("state");
-
-                    b.Property<string>("streetaddress");
-
-                    b.Property<string>("surname");
-
-                    b.Property<int>("telephonecountrycode");
-
-                    b.Property<string>("telephonenumber");
-
-                    b.Property<string>("tropicalzodiac");
-
                     b.Property<DateTime>("updated_at");
-
-                    b.Property<string>("username");
-
-                    b.Property<string>("weight");
-
-                    b.Property<string>("zipcode");
 
                     b.HasKey("UserId");
 
@@ -138,45 +90,19 @@ namespace match.Migrations
                     b.Property<int>("UserdetailId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CVV2");
-
                     b.Property<int>("UserId");
-
-                    b.Property<int>("age");
-
-                    b.Property<string>("birthday");
-
-                    b.Property<string>("ccexpires");
-
-                    b.Property<string>("ccnumber");
-
-                    b.Property<string>("cctype");
 
                     b.Property<string>("city");
 
-                    b.Property<string>("color");
-
                     b.Property<DateTime>("created_at");
-
-                    b.Property<string>("email");
 
                     b.Property<string>("gender");
 
                     b.Property<string>("givenname");
 
-                    b.Property<string>("height");
-
-                    b.Property<string>("maidenname");
-
                     b.Property<string>("middleinitial");
 
                     b.Property<string>("nameset");
-
-                    b.Property<string>("nationalid");
-
-                    b.Property<string>("occupation");
-
-                    b.Property<string>("password");
 
                     b.Property<string>("state");
 
@@ -184,23 +110,11 @@ namespace match.Migrations
 
                     b.Property<string>("surname");
 
-                    b.Property<int>("telephonecountrycode");
-
-                    b.Property<string>("telephonenumber");
-
-                    b.Property<string>("tropicalzodiac");
-
                     b.Property<DateTime>("updated_at");
-
-                    b.Property<string>("username");
-
-                    b.Property<string>("weight");
 
                     b.Property<string>("zipcode");
 
                     b.HasKey("UserdetailId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Userdetails");
                 });
@@ -214,61 +128,15 @@ namespace match.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.Property<int>("age");
-
-                    b.Property<string>("birthday");
-
                     b.Property<string>("ccexpires");
 
                     b.Property<string>("ccnumber");
 
                     b.Property<string>("cctype");
 
-                    b.Property<string>("city");
-
-                    b.Property<string>("color");
-
                     b.Property<DateTime>("created_at");
 
-                    b.Property<string>("email");
-
-                    b.Property<string>("gender");
-
-                    b.Property<string>("givenname");
-
-                    b.Property<string>("height");
-
-                    b.Property<string>("maidenname");
-
-                    b.Property<string>("middleinitial");
-
-                    b.Property<string>("nameset");
-
-                    b.Property<string>("nationalid");
-
-                    b.Property<string>("occupation");
-
-                    b.Property<string>("password");
-
-                    b.Property<string>("state");
-
-                    b.Property<string>("streetaddress");
-
-                    b.Property<string>("surname");
-
-                    b.Property<int>("telephonecountrycode");
-
-                    b.Property<string>("telephonenumber");
-
-                    b.Property<string>("tropicalzodiac");
-
                     b.Property<DateTime>("updated_at");
-
-                    b.Property<string>("username");
-
-                    b.Property<string>("weight");
-
-                    b.Property<string>("zipcode");
 
                     b.HasKey("UserpaymentId");
 
@@ -326,81 +194,35 @@ namespace match.Migrations
                     b.Property<int>("UserprofileId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CVV2");
-
                     b.Property<string>("Relationship");
 
                     b.Property<int>("UserId");
 
                     b.Property<int>("UserdetailId");
 
-                    b.Property<int>("age");
+                    b.Property<int?>("age");
 
-                    b.Property<string>("birthday");
+                    b.Property<string>("biodetail");
 
                     b.Property<string>("bodytype");
 
-                    b.Property<string>("ccexpires");
-
-                    b.Property<string>("ccnumber");
-
-                    b.Property<string>("cctype");
-
-                    b.Property<string>("city");
-
-                    b.Property<string>("color");
-
                     b.Property<DateTime>("created_at");
 
-                    b.Property<string>("email");
-
-                    b.Property<string>("gender");
-
-                    b.Property<string>("givenname");
+                    b.Property<string>("drink");
 
                     b.Property<string>("height");
 
-                    b.Property<string>("maidenname");
+                    b.Property<string>("kid");
 
-                    b.Property<string>("middleinitial");
-
-                    b.Property<string>("nameset");
-
-                    b.Property<string>("nationalid");
-
-                    b.Property<string>("occupation");
-
-                    b.Property<string>("password");
+                    b.Property<string>("profilepic");
 
                     b.Property<int?>("salary");
 
                     b.Property<string>("smoke");
 
-                    b.Property<string>("state");
-
-                    b.Property<string>("streetaddress");
-
-                    b.Property<string>("surname");
-
-                    b.Property<int>("telephonecountrycode");
-
-                    b.Property<string>("telephonenumber");
-
-                    b.Property<string>("tropicalzodiac");
-
                     b.Property<DateTime>("updated_at");
 
-                    b.Property<string>("username");
-
-                    b.Property<string>("weight");
-
-                    b.Property<string>("zipcode");
-
                     b.HasKey("UserprofileId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserdetailId");
 
                     b.ToTable("Userprofiles");
                 });
@@ -428,14 +250,6 @@ namespace match.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("match.Models.Userdetail", b =>
-                {
-                    b.HasOne("match.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("match.Models.Userpayment", b =>
                 {
                     b.HasOne("match.Models.User", "User")
@@ -459,19 +273,6 @@ namespace match.Migrations
                     b.HasOne("match.Models.Userprofile", "Userprofile")
                         .WithMany()
                         .HasForeignKey("UserprofileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("match.Models.Userprofile", b =>
-                {
-                    b.HasOne("match.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("match.Models.Userdetail", "Userdetail")
-                        .WithMany()
-                        .HasForeignKey("UserdetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

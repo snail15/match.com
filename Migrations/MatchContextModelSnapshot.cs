@@ -115,8 +115,6 @@ namespace match.Migrations
 
                     b.HasKey("UserdetailId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Userdetails");
                 });
 
@@ -201,11 +199,21 @@ namespace match.Migrations
 
                     b.Property<int>("UserdetailId");
 
+                    b.Property<int?>("age");
+
+                    b.Property<string>("biodetail");
+
                     b.Property<string>("bodytype");
 
                     b.Property<DateTime>("created_at");
 
+                    b.Property<string>("drink");
+
                     b.Property<string>("height");
+
+                    b.Property<string>("kid");
+
+                    b.Property<string>("profilepic");
 
                     b.Property<int?>("salary");
 
@@ -213,13 +221,7 @@ namespace match.Migrations
 
                     b.Property<DateTime>("updated_at");
 
-                    b.Property<string>("weight");
-
                     b.HasKey("UserprofileId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserdetailId");
 
                     b.ToTable("Userprofiles");
                 });
@@ -247,14 +249,6 @@ namespace match.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("match.Models.Userdetail", b =>
-                {
-                    b.HasOne("match.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("match.Models.Userpayment", b =>
                 {
                     b.HasOne("match.Models.User", "User")
@@ -278,19 +272,6 @@ namespace match.Migrations
                     b.HasOne("match.Models.Userprofile", "Userprofile")
                         .WithMany()
                         .HasForeignKey("UserprofileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("match.Models.Userprofile", b =>
-                {
-                    b.HasOne("match.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("match.Models.Userdetail", "Userdetail")
-                        .WithMany()
-                        .HasForeignKey("UserdetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

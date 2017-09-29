@@ -15,35 +15,11 @@ namespace match.Migrations
                 {
                     UserId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CVV2 = table.Column<string>(nullable: true),
-                    age = table.Column<int>(nullable: false),
                     birthday = table.Column<DateTime>(nullable: false),
-                    ccexpires = table.Column<string>(nullable: true),
-                    ccnumber = table.Column<string>(nullable: true),
-                    cctype = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    color = table.Column<string>(nullable: true),
                     created_at = table.Column<DateTime>(nullable: false),
                     email = table.Column<string>(nullable: true),
-                    gender = table.Column<string>(nullable: true),
-                    givenname = table.Column<string>(nullable: true),
-                    height = table.Column<string>(nullable: true),
-                    maidenname = table.Column<string>(nullable: true),
-                    middleinitial = table.Column<string>(nullable: true),
-                    nameset = table.Column<string>(nullable: true),
-                    nationalid = table.Column<string>(nullable: true),
-                    occupation = table.Column<string>(nullable: true),
                     password = table.Column<string>(nullable: true),
-                    state = table.Column<string>(nullable: true),
-                    streetaddress = table.Column<string>(nullable: true),
-                    surname = table.Column<string>(nullable: true),
-                    telephonecountrycode = table.Column<int>(nullable: false),
-                    telephonenumber = table.Column<string>(nullable: true),
-                    tropicalzodiac = table.Column<string>(nullable: true),
-                    updated_at = table.Column<DateTime>(nullable: false),
-                    username = table.Column<string>(nullable: true),
-                    weight = table.Column<string>(nullable: true),
-                    zipcode = table.Column<string>(nullable: true)
+                    updated_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,46 +32,48 @@ namespace match.Migrations
                 {
                     UserdetailId = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CVV2 = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
-                    age = table.Column<int>(nullable: false),
-                    birthday = table.Column<string>(nullable: true),
-                    ccexpires = table.Column<string>(nullable: true),
-                    ccnumber = table.Column<string>(nullable: true),
-                    cctype = table.Column<string>(nullable: true),
                     city = table.Column<string>(nullable: true),
-                    color = table.Column<string>(nullable: true),
                     created_at = table.Column<DateTime>(nullable: false),
-                    email = table.Column<string>(nullable: true),
                     gender = table.Column<string>(nullable: true),
                     givenname = table.Column<string>(nullable: true),
-                    height = table.Column<string>(nullable: true),
-                    maidenname = table.Column<string>(nullable: true),
                     middleinitial = table.Column<string>(nullable: true),
                     nameset = table.Column<string>(nullable: true),
-                    nationalid = table.Column<string>(nullable: true),
-                    occupation = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true),
                     state = table.Column<string>(nullable: true),
                     streetaddress = table.Column<string>(nullable: true),
                     surname = table.Column<string>(nullable: true),
-                    telephonecountrycode = table.Column<int>(nullable: false),
-                    telephonenumber = table.Column<string>(nullable: true),
-                    tropicalzodiac = table.Column<string>(nullable: true),
                     updated_at = table.Column<DateTime>(nullable: false),
-                    username = table.Column<string>(nullable: true),
-                    weight = table.Column<string>(nullable: true),
                     zipcode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Userdetails", x => x.UserdetailId);
-                    table.ForeignKey(
-                        name: "FK_Userdetails_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Userprofiles",
+                columns: table => new
+                {
+                    UserprofileId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Relationship = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: false),
+                    UserdetailId = table.Column<int>(nullable: false),
+                    age = table.Column<int>(nullable: true),
+                    biodetail = table.Column<string>(nullable: true),
+                    bodytype = table.Column<string>(nullable: true),
+                    created_at = table.Column<DateTime>(nullable: false),
+                    drink = table.Column<string>(nullable: true),
+                    height = table.Column<string>(nullable: true),
+                    kid = table.Column<string>(nullable: true),
+                    profilepic = table.Column<string>(nullable: true),
+                    salary = table.Column<int>(nullable: true),
+                    smoke = table.Column<string>(nullable: true),
+                    updated_at = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Userprofiles", x => x.UserprofileId);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,34 +84,11 @@ namespace match.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     CVV2 = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
-                    age = table.Column<int>(nullable: false),
-                    birthday = table.Column<string>(nullable: true),
                     ccexpires = table.Column<string>(nullable: true),
                     ccnumber = table.Column<string>(nullable: true),
                     cctype = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    color = table.Column<string>(nullable: true),
                     created_at = table.Column<DateTime>(nullable: false),
-                    email = table.Column<string>(nullable: true),
-                    gender = table.Column<string>(nullable: true),
-                    givenname = table.Column<string>(nullable: true),
-                    height = table.Column<string>(nullable: true),
-                    maidenname = table.Column<string>(nullable: true),
-                    middleinitial = table.Column<string>(nullable: true),
-                    nameset = table.Column<string>(nullable: true),
-                    nationalid = table.Column<string>(nullable: true),
-                    occupation = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true),
-                    state = table.Column<string>(nullable: true),
-                    streetaddress = table.Column<string>(nullable: true),
-                    surname = table.Column<string>(nullable: true),
-                    telephonecountrycode = table.Column<int>(nullable: false),
-                    telephonenumber = table.Column<string>(nullable: true),
-                    tropicalzodiac = table.Column<string>(nullable: true),
-                    updated_at = table.Column<DateTime>(nullable: false),
-                    username = table.Column<string>(nullable: true),
-                    weight = table.Column<string>(nullable: true),
-                    zipcode = table.Column<string>(nullable: true)
+                    updated_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,65 +98,6 @@ namespace match.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Userprofiles",
-                columns: table => new
-                {
-                    UserprofileId = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    CVV2 = table.Column<string>(nullable: true),
-                    Relationship = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: false),
-                    UserdetailId = table.Column<int>(nullable: false),
-                    age = table.Column<int>(nullable: false),
-                    birthday = table.Column<string>(nullable: true),
-                    bodytype = table.Column<string>(nullable: true),
-                    ccexpires = table.Column<string>(nullable: true),
-                    ccnumber = table.Column<string>(nullable: true),
-                    cctype = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    color = table.Column<string>(nullable: true),
-                    created_at = table.Column<DateTime>(nullable: false),
-                    email = table.Column<string>(nullable: true),
-                    gender = table.Column<string>(nullable: true),
-                    givenname = table.Column<string>(nullable: true),
-                    height = table.Column<string>(nullable: true),
-                    maidenname = table.Column<string>(nullable: true),
-                    middleinitial = table.Column<string>(nullable: true),
-                    nameset = table.Column<string>(nullable: true),
-                    nationalid = table.Column<string>(nullable: true),
-                    occupation = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true),
-                    salary = table.Column<int>(nullable: true),
-                    smoke = table.Column<string>(nullable: true),
-                    state = table.Column<string>(nullable: true),
-                    streetaddress = table.Column<string>(nullable: true),
-                    surname = table.Column<string>(nullable: true),
-                    telephonecountrycode = table.Column<int>(nullable: false),
-                    telephonenumber = table.Column<string>(nullable: true),
-                    tropicalzodiac = table.Column<string>(nullable: true),
-                    updated_at = table.Column<DateTime>(nullable: false),
-                    username = table.Column<string>(nullable: true),
-                    weight = table.Column<string>(nullable: true),
-                    zipcode = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Userprofiles", x => x.UserprofileId);
-                    table.ForeignKey(
-                        name: "FK_Userprofiles_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Userprofiles_Userdetails_UserdetailId",
-                        column: x => x.UserdetailId,
-                        principalTable: "Userdetails",
-                        principalColumn: "UserdetailId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -321,11 +217,6 @@ namespace match.Migrations
                 column: "UserprofileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Userdetails_UserId",
-                table: "Userdetails",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Userpayments_UserId",
                 table: "Userpayments",
                 column: "UserId");
@@ -344,16 +235,6 @@ namespace match.Migrations
                 name: "IX_Userpreferences_UserprofileId",
                 table: "Userpreferences",
                 column: "UserprofileId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Userprofiles_UserId",
-                table: "Userprofiles",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Userprofiles_UserdetailId",
-                table: "Userprofiles",
-                column: "UserdetailId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -368,13 +249,13 @@ namespace match.Migrations
                 name: "Userpreferences");
 
             migrationBuilder.DropTable(
-                name: "Userprofiles");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Userdetails");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Userprofiles");
         }
     }
 }

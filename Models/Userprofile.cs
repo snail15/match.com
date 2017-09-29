@@ -5,12 +5,18 @@ namespace match.Models
     {
         public int UserprofileId {get; set;}
         public int UserId {get; set;}
+        public int UserdetailId {get; set;}
         public string bodytype {get;set;}
         public string smoke {get; set;}
         public int? salary {get; set;}
         public string height {get;set;}
-        public string weight {get;set;}
+        // public string weight {get;set;}
         public string Relationship { get; set; }
+        public string kid {get;set;}
+        public string drink {get;set;}
+        public int? age {get;set;}
+        public string biodetail {get;set;}
+        public string profilepic {get;set;}
         //-----------------------------
         // public string gender {get; set;} //varchar(6) NOT NULL,
         // public string nameset {get; set;}//varchar(25) NOT NULL,

@@ -31,9 +31,11 @@ namespace match.Controllers
         }
 
         [HttpGet]
-        [Route("dashboard")]
+        [Route("main")]
         public IActionResult Dashboard()
         {
+            // List<Wrapper> ReturnedValues = _context.Wrapper.Userprofiles.Age()
+            //Userprofiles.Where(user => user.age > 17).ToList();
             return View();
         }
         
@@ -92,17 +94,26 @@ namespace match.Controllers
             }
             else
             {
-                PasswordHasher<User> hasher = new PasswordHasher<User>();
-                if(hasher.VerifyHashedPassword(loginuser, loginuser.password, password) != 0)
+                if(password==null)
                 {
-                    HttpContext.Session.SetInt32("currentUserId", loginuser.UserId);
-                    return RedirectToAction("GeneralInfo");
-                } 
-                else 
-                {
-                    TempData["PasswordError"] = "Incorrect password";
+                    TempData["PasswordError"] = "Please enter your password";
                     // TempData["PasswordError"] = ViewBag.PasswordError;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index");                 
+                }
+                else
+                {
+                    PasswordHasher<User> hasher = new PasswordHasher<User>();
+                    if(hasher.VerifyHashedPassword(loginuser, loginuser.password, password) != 0)
+                    {
+                        HttpContext.Session.SetInt32("currentUserId", loginuser.UserId);
+                        return RedirectToAction("GeneralInfo");
+                    } 
+                    else 
+                    {
+                        TempData["PasswordError"] = "Incorrect password";
+                        // TempData["PasswordError"] = ViewBag.PasswordError;
+                        return RedirectToAction("Index");
+                    }
                 }
             }
         }
@@ -153,7 +164,15 @@ namespace match.Controllers
                 {
                     if(ModelState.IsValid)
                     {
-                        Userdetail newDetail = new Userdetail{
+                        // DateTime now = DateTime.Today;
+                        // int age = userdetail.
+                        // // int age = now.Year - _context;
+                        // if (now < model.birthday.AddYears(age))
+                        // { 
+                        // age--;
+                        // }
+                        Userdetail newDetail = new Userdetail
+                        {
                             UserId = (int)userId,
                             gender = model.gender,
                             givenname = model.givenname,
@@ -177,12 +196,18 @@ namespace match.Controllers
         }
         [HttpGet]
         [Route("profile")]
-        public IActionResult Profile() 
+        public IActionResult Profile(UserprofileViewModel model) 
         {
+            // DateTime now = DateTime.Today;
+            // int age = now.Year - model.birthday.Year;
+            // if (now < model.birthday.AddYears(age))
+            // { 
+            //     age--;
+            // }
             // ViewBag.statuspage = "weight";
             return View("userprofile");
         }
-        
+
 
         // [HttpPost]
         // [Route("/generalinfo")]

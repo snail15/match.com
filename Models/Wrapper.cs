@@ -12,6 +12,10 @@ namespace match.Models
         public List<Userpreference> Userpreferences {get; set;}
         public List<Userpayment> Userpayments {get; set;}
         public List<Userbioactivity> Userbioactivities {get; set;}
+        public User newUser { get; set; }
+        public Userdetail newUserdetail { get; set; }
+        public Userprofile newUserprofile { get; set; }
+
         public Wrapper(List<User> u,List<Userdetail> d,List<Userprofile> p, List<Userpreference> r,List<Userpayment> y,List<Userbioactivity> b)
         {
             Users = u;
@@ -20,6 +24,9 @@ namespace match.Models
             Userpreferences = r;
             Userpayments = y;
             Userbioactivities = b;
+            newUser = new User();
+            newUserdetail = new Userdetail();
+            newUserprofile = new Userprofile();
         }
 
     }
