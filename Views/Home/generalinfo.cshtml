@@ -7,7 +7,8 @@
     <div class="col-sm-6">
         <div class="registration-card">
             <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
-            <form asp-controller="Home" asp-action="Index" method="POST">
+            <h4><a href='/logout'>Log Out</a></h4><br><br><br>
+            <form asp-controller="Home" asp-action="/adddetails" method="POST">
                 <div class="form-group">
                     <label for="gender">Gender:</label>
                     <select name='gender'>
@@ -31,9 +32,9 @@
                     <small id="surnameHelp" class="form-text text-muted"><span asp-validation-for="surname"></span></small>
                 </div>
                 <div class="form-group">
-                    <label for="streetaddress">Street Address:</label>
-                    <input asp-for="streetaddress" type="text" name="streetaddress" class="form-control" id="streetaddress" aria-describedby="streetaddressHelp">
-                    <small id="streetaddressHelp" class="form-text text-muted"><span asp-validation-for="streetaddress"></span></small>
+                    <label for="zip">Zip Code:</label>
+                    <input asp-for="zip" type="text" name="zip" class="form-control" id="zip" aria-describedby="zipHelp">
+                    <small id="zipHelp" class="form-text text-muted"><span asp-validation-for="zip"></span></small>
                 </div>
                 <div class="form-group">
                     <label for="city">City:</label>
@@ -46,9 +47,9 @@
                     <small id="stateHelp" class="form-text text-muted"><span asp-validation-for="state"></span></small>
                 </div>
                 <div class="form-group">
-                    <label for="zipcode">Zip Code:</label>
-                    <input asp-for="zipcode" type="text" name="zipcode" class="form-control" id="zipcode" aria-describedby="zipcodeHelp">
-                    <small id="zipcodeHelp" class="form-text text-muted"><span asp-validation-for="zipcode"></span></small>
+                    <label for="streetaddress">Street Address:</label>
+                    <input asp-for="streetaddress" type="text" name="streetaddress" class="form-control" id="streetaddress" aria-describedby="streetaddressHelp">
+                    <small id="streetaddressHelp" class="form-text text-muted"><span asp-validation-for="streetaddress"></span></small>
                 </div>
                 <button type="submit" class="btn btn-primary">Continue</button>
             </form>

@@ -20,7 +20,7 @@ namespace match.Models
         public string confirmpass {get; set;}
 
         [Required(ErrorMessage="Please include your birthday")]
-        [DataType(DataType.DateTime)]        
+        [DataType(DataType.DateTime)]     
         public DateTime birthday {get; set;}
     }
 }

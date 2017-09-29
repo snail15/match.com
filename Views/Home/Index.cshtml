@@ -1,45 +1,110 @@
-@model match.Models.UserViewModel
-@{ 
-    ViewData["Title"] = "Welcome to Match!";
-}
-<div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6">
-        <div class="registration-card">
-            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
-            <form asp-controller="Home" asp-action="Index" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input asp-for="email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="iamdesperate@match.com">
-                    <small id="emailHelp" class="form-text text-muted"><span asp-validation-for="email"></span></small>
+<head>
+    @model match.Models.UserViewModel
+    @{ 
+        ViewData["Title"] = "Welcome to Match!";
+    }
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    @if(@ViewBag.Logged==null && ViewBag.passworderror == null)
+    {
+    <script>
+        $(document).ready(function(){
+            $(".register").css("display","block");
+            $(".login").css("display","none");
+        });
+    </script>
+    }
+    @if(@ViewBag.Logged==null && ViewBag.passworderror != null)
+    {
+    <script>
+        $(document).ready(function(){
+            $(".register").css("display","none");
+            $(".login").css("display","block");
+        });
+    </script>
+    }
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="registration-card">
+                <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+                <a href='/logout'>Log Out</a><br><br><br>
+                @if(@ViewBag.Logged==null)
+                {
+                <div id="myModal" class="modal">
+                <!-- Modal content -->
+                    <div class="modal-content">
+                        <!-- <span class="close">&times;</span> -->
+                        <div class='register'>
+                            <h2>If are a member, click here <button id="userlogin">Login</button></h2>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('#userlogin').click(function () {
+                                        $(".register").css("display","none");
+                                        $(".login").css("display","block");
+                                    });
+                                });
+                            </script>
+                            <form asp-controller="Home" asp-action="Index" method="POST">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input asp-for="email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="iamdesperate@match.com">
+                                    <small id="emailHelp" class="form-text text-muted"><span asp-validation-for="email"></span></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input asp-for="password" type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp">
+                                    <small id="passwordHelp" class="form-text text-muted"><span asp-validation-for="password"></span></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmpass">Confirm:</label>
+                                    <input asp-for="confirmpass" type="password" name="confirmpass" class="form-control" id="confirmpass" aria-describedby="confirmpassHelp">
+                                    <small id="nameHelp" class="form-text text-muted"><span asp-validation-for="confirmpass"></span></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthday">Birthday:</label>
+                                    <input asp-for="birthday" type="date" name="birthday" class="form-control" id="birthday" aria-describedby="birthdayHelp">
+                                    <small id="birthdayHelp" class="form-text text-muted"><span asp-validation-for="birthday"></span></small>
+                                    @if(@ViewBag.age != null)
+                                    {
+                                        <p>@ViewBag.age</p>;
+                                    }
+                                </div>
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </form>
+                        </div>
+                        <div class='login'>
+                            <h2>If you have not registered yet, go to <button id="userregister">Register</button></h2>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('#userregister').click(function () {
+                                        $(".register").css("display","block");
+                                        $(".login").css("display","none");
+                                    });
+                                });
+                            </script>
+                            <form action="/login" method="POST">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input asp-for="email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="iamdesperate@match.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input asp-for="password" type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp">
+                                    @if(@ViewBag.passworderror != null)
+                                    {
+                                        <p>@ViewBag.passworderror</p>
+                                    }
+                                </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input asp-for="password" type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp">
-                    <small id="passwordHelp" class="form-text text-muted"><span asp-validation-for="password"></span></small>
-                </div>
-                <div class="form-group">
-                    <label for="confirmpass">Confirm:</label>
-                    <input asp-for="confirmpass" type="password" name="confirmpass" class="form-control" id="confirmpass" aria-describedby="confirmpassHelp">
-                    <small id="nameHelp" class="form-text text-muted"><span asp-validation-for="confirmpass"></span></small>
-                </div>
-                <div class="form-group">
-                    <label for="birthday">Birthday:</label>
-                    <input asp-for="birthday" type="date" name="birthday" class="form-control" id="birthday" aria-describedby="birthdayHelp">
-                    <small id="birthdayHelp" class="form-text text-muted"><span asp-validation-for="birthday"></span></small>
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-            <button id="myBtn">Open Modal</button>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-            <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
-                </div>
+                }
             </div>
         </div>
+        <div class="col-sm-3"></div>
     </div>
-    <div class="col-sm-3"></div>
-</div>
+</body>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace match.Models
 {
-    public class UserdetailViewModel : BaseEntity {
+    public class UserprofileViewModel : BaseEntity {
         [Key]
         public int UserdetailsId {get; set;}
 

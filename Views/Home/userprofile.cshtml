@@ -1,53 +1,111 @@
-@{ ViewData["Title"] = "Your profile!"; }
+@{ ViewData["Title"] = "Welcome to Match!"; }
 
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <div class="registration-card">
             <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
-            @if(ViewBag.statuspage=="height")
-            {
-            <div id="heightSlider"></div>
-            <button class="height-btn btn btn-success">"This is how tall I am?"</button>
+            <h3>About You</h3>
+            @{
+                if(ViewBag.Error != null){
+                    <h4>@ViewBag.Error</h4>
+                }
             }
-            @if(ViewBag.statuspage=="weight")
-            {
-            <label for='weight'>Weight:</label>
-            <input type='text' name='weight'/>
-            <button class="height-btn btn btn-success">"How much do I weight?"</button>
-            }
-            @if(ViewBag.statuspage=="smoke")
-            {
+            <form asp-controller="Home" asp-action="Profile" class="general-form form-horizontal">
+                 <div class="form-group">
+                    <label for="height" class="col-sm-2 control-label">height</label>
+                    <div class="col-sm-5">
+                        <select name="height"class="form-control" id="height">
+                            <option selected="true" disabled="disabled">height</option>
+                            @{
+                                for(var i = 4; i <= 7; i++){
+                                    <!-- <option value="@i">@i</option> -->
+                                    for(var x = 0; x <= 11; x++)
+                                    {
+                                        <option value="@i*12+@x">@i" @x"</option>
+                                    }
+                                }
+                            }   
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="drink" class="col-sm-2 control-label">Drink</label>
+                    <div class="col-sm-10">
+                        <select name="drink" class="form-control" id="drink">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label for="religion" class="col-sm-2 control-label">Religion</label>
+                    <div class="col-sm-10">
+                        <select name="religion" class="form-control" id="religion">
+                            <option value="1">Buddhism</option>
+                            <option value="2">Christianity</option>
+                            <option value="3">Islam</option>
+                            <option value="4">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="smoke" class="col-sm-2 control-label">Smoke</label>
+                    <div class="col-sm-10">
+                        <select name="smoke" class="form-control" id="smoke">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ethinicity" class="col-sm-2 control-label">Ethinicity</label>
+                    <div class="col-sm-10">
+                        <select name="ethinicity" class="form-control" id="ethinicity">
+                            <option value="1">Asian</option>
+                            <option value="2">African-American</option>
+                            <option value="3">White</option>
+                            <option value="4">Latino</option>
+                            <option value="5">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="relationship" class="col-sm-2 control-label">Relationship</label>
+                    <div class="col-sm-10">
+                        <select name="relationship" class="form-control" id="relationship">
+                            <option value="1">Married</option>
+                            <option value="2">Seperated</option>
+                            <option value="3">Never Married</option>
+                            <option value="4">Divorced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="kids" class="col-sm-2 control-label">Kids</label>
+                    <div class="col-sm-10">
+                        <select name="kids" class="form-control" id="kids">
+                            <option value="0">Have No Kids</option>
+                            <option value="1">Have Kids</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bodytype" class="col-sm-2 control-label">Body Type</label>
+                    <div class="col-sm-10">
+                        <select name="bodytype" class="form-control" id="bodytype">
+                            <option value="1">Slim</option>
+                            <option value="2">Average</option>
+                            <option value="3">Above Average</option>
+                            <option value="4">Big</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Next</button>
+            </form>
+        </div>
 
-            }
-            @if(ViewBag.statuspage=="drink")
-            {
-            <label for='smoke'>'Do I drink?'</label>
-            <select name='drink'>
-                <option value='No'>Male</option>
-                <option value='Yes'>Female</option>
-            </select>
-            <!-- <label for="dealbreak">Is this a dealbreak</label>
-            <input type="radio" id="Yes" name="dealbreak" value="Yes">
-            <label for="No">Female</label>
-            <input type="radio" id="No" name="dealbreak" value="No"> -->
-            }
-        </div>
-        <div class="form-group">
-        <!-- <label for="height" class="col-sm-2 control-label">height</label>
-        <div class="col-sm-5">
-            <select name="foot"class="form-control" id="foot">
-                <option value="0">Foot</option>
-                @{
-                    for(var i = 1; i <= 6; i++){
-                        <option value="@i">@i</option>
-                    }
-                }  
-            </select>
-        </div> -->
-        <div id='profileform' style="display: none;">
-            
-        </div>
     </div>
     <div class="col-sm-3"></div>
 </div>

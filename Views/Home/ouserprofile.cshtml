@@ -1,0 +1,65 @@
+<!-- @{ ViewData["Title"] = "Your profile!"; } -->
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <div class="registration-card">
+            <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <form action="addupprofile" method="POST">
+                <div class="form-group">
+                    <label for="relationship">Relationship Status:</label>
+                    <select name='relashionship'>
+                        <option value='Single'>Single</option>
+                        <option value='Divorced'>Divorced</option>
+                        <option value='Widow'>Widow</option>
+                    </select>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="kids">Do you have kids?</label>
+                    <select name='kids'>
+                        <option value='No'>No</option>
+                        <option value='Yes - They live with me'>Yes - They live with me</option>
+                        <option value="Yes - They don't live with me">Yes - They don't live with me</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input type="text" name="salary" class="form-control" placeholder='Only numbers'>
+                </div>
+                <label for="height" class="col-sm-2 control-label">Your height:</label>
+                    <div class="col-sm-5">
+                        <select name="height"class="form-control" id="foot">
+                            <option selected="true" disabled="disabled">height</option>
+                            @for(var i = 1; i <= 6; i++)
+                            {
+                                @for(var x = 0; x <= 11; i++)
+                                {
+                                    <option value='@i" @x"'>@i</option>
+                                }
+                            }                  
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="bodytype">Do you have bodytype?</label>
+                    <select name='bodytype'>
+                        <option value='lovehandles'>I have love handles</option>
+                        <option value='fit'>I am exercise sometimes, fairly fit</option>
+                        <option value='superfit'>I am super fit</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="drink">Do you drink?</label>
+                    <select name='drink'>
+                        <option value='nodealbreaker'>No, and it is a dealbreaker</option>
+                        <option value='no'>No</option>
+                        <option value='yessocialy'>I drink sometimes</option>
+                        <option value='althetime'>I like to drink often</option>
+                    </select>
+                    </div>
+                    <label for="yourbio">Do you drink?</label>
+                    <textarea name="yourbio"></textarea>
+                </div> -->
+            </form>   
+        </div>
+    <div class="col-sm-3"></div>
+</div>

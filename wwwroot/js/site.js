@@ -55,18 +55,65 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
-btn.onclick = function() {
+$(document).ready(function() {
     modal.style.display = "block";
-}
+})
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// span.onclick = function() {
+//     modal.style.display = "none";
+// }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+//when the user clicks off of the zip field:
+//when the user clicks off of the zip field:
+$('#zip').blur(function(){
+    var zip = $(this).val();
+    var city = '';
+    var state = '';
+  
+    //make a request to the google geocode api
+    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address='+zip).success(function(response){
+      //find the city and state
+      var address_components = response.results[0].address_components;
+      $.each(address_components, function(index, component){
+        var types = component.types;
+        $.each(types, function(index, type){
+          if(type == 'locality') {
+            city = component.long_name;
+          }
+          if(type == 'administrative_area_level_1') {
+            state = component.short_name;
+          }
+        });
+      });
+  
+      //pre-fill the city and state
+      $('#city').val(city);
+      $('#state').val(state);
+    });
+});
+//check for multiple cities
+var cities = response.results[0].postcode_localities;
+if(cities) {
+  //turn city into a dropdown if necessary
+  var $select = $(document.createElement('select'));
+  $.each(cities, function(index, locality){
+    var $option = $(document.createElement('option'));
+    $option.html(locality);
+    $option.attr('value',locality);
+    if(city == locality) {
+      $option.attr('selected','selected');
     }
+    $select.append($option);
+  });
+  $select.attr('id','city');
+  $('#city_wrap').html($select);
+} else {
+  $('#city').val(city);
 }
