@@ -1,3 +1,5 @@
+@if(@ViewBag.User.Id != currentUser.Id)
+{
 <div class="container" >
 <nav class="nav">
     
@@ -22,17 +24,17 @@
     <p class="card-text">ONLINE STATUS</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">@User.Age - @User.Gender</li>
-    <li class="list-group-item">@User.Location</li>
-    <li class="list-group-item">SEEKING(MAN OR WOMEN), AGE RANGE, DISTANCE</li>
+    <li class="list-group-item">@UserDetails.Age - @UserDetails.Gender</li>
+    <li class="list-group-item">@UserDetails.Location</li>
+    <li class="list-group-item">@User.Preference.Gender, @User.Preference.MinAge-@User.Preference.MaxAge, @User.Preference.Distance</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="card-link">LIKE</a>
-    <a href="#" class="card-link">FAVORITE</a>
+    <a class="card-link" asp-controller="Home" asp-action="#">LIKE</a>
+    <a class="card-link" asp-controller="Home" asp-action="#">FAVORITE</a>
   </div>
 </div><br>
 <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">MATCH PERCENTAGE HERE</div>
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">MATCH% HERE</div>
 </div>
 
 
@@ -130,6 +132,125 @@ WHAT USER IS LOOKING FOR FROM OTHER USERS (PREFERENCES)
     <br><input class="btn btn-primary btn-small" role="button" type="submit" name="Send Message">
 </form>
 </div>
-<!-- ==================================================================== -->
-<!-- ==================================================================== -->
+
 </div>
+
+<!-- ==================================================================== -->
+<!-- FOR USER'S OWN PROFILE -->
+<!-- ==================================================================== -->
+
+
+}else{
+   
+<div class="container" >
+<nav class="nav">
+    
+    <a class="navbar-brand" href="#">
+    <img src="https://www.meetic-group.com/wp-content/uploads/2015/05/match-logo-blue-300x88.png" width="150" height="44" alt="">
+    </a>
+
+
+  <a asp-controller="Home" asp-action="#">Matches</a>
+  <a asp-controller="Message" asp-action="messages/Inbox">Messages</a>
+  <a asp-controller="Home" asp-action="/logout">Logout</a>
+  <a asp-controller="Home" asp-action="#">@User.Name</a>
+</nav><br>
+    
+  
+<!-- ==================================================================== -->
+<!-- ==================================================================== -->
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="@User.ImgUrl" alt="PROFILE IMAGE">
+  <div class="card-body">
+    <h4 class="card-title">@currentUser.Name</h4>
+    <p class="card-text">ONLINE STATUS</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">@currentUser.Age - @currentUser.UserDetails.Gender</li>
+    <li class="list-group-item">@currentUser.UserDetails.Location</li>
+    <li class="list-group-item">@currentUser.Preference.Gender, @currentUser.Preference.MinAge - @currentUser.Preference.MaxAge, @currentUser.Preference.Distance</li>
+  </ul>
+</div><br>
+
+
+
+<!-- ==================================================================== -->
+<!-- ==================================================================== -->
+<div class="container"><hr>
+    USER BIO HERE
+    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed feugiat lectus. Duis facilisis tempor ex, lobortis pharetra ante consequat dapibus. Duis blandit, orci at hendrerit euismod, ipsum quam ornare arcu, ut egestas nibh risus sit amet nulla. Integer vel mauris at massa scelerisque pretium. Duis a orci sit amet tortor sodales luctus vitae a lectus. Maecenas sit amet mi euismod, placerat lectus sed, tincidunt turpis. Pellentesque pharetra massa at tortor condimentum, eu congue dolor pretium. Aenean scelerisque aliquet suscipit. Suspendisse non porttitor dui, at consequat eros. Phasellus dictum augue at maximus finibus. Proin vitae odio a nulla finibus consequat. Pellentesque facilisis orci vitae sem rutrum accumsan."</p>
+    <hr>
+<!-- ==================================================================== -->
+<!-- ==================================================================== -->
+
+    USER DESCRIPTIONS HERE <br><br>
+    
+    <div class="row ">
+        <div class="col-sm">MARITAL STATUS</div>
+        <div class="col-sm">HAVE KIDS</div>
+        <div class="col-sm">WANT KIDS</div>
+    </div>
+    
+    <div class="row ">
+        <div class="col-sm">EDUCATION</div>
+        <div class="col-sm">BODY TYPE</div>
+        <div class="col-sm">HEIGHT</div>
+    </div>
+
+    <div class="row ">
+        <div class="col-sm">RELIGION</div>
+        <div class="col-sm">SMOKING</div>
+        <div class="col-sm">DRINKING</div>
+    </div>
+    <hr>
+
+    <div class="row ">
+        <div class="col-sm">ETNICITY</div>
+        <div class="col-sm">INCOME</div>
+    </div>
+    <hr>
+<!-- ==================================================================== -->
+<!-- ==================================================================== -->
+
+USER INTERESTS (SPORTS, TRAVELING, ETC.)
+     <div class="row ">
+         { foreach(var interest in User.Interests)
+                {
+                    <tr>
+                        <td>interest.Name</td>
+                    </tr>
+                } 
+            }
+    </div>
+    <hr>
+<!-- ==================================================================== -->
+<!-- ==================================================================== -->
+
+WHAT USER IS LOOKING FOR FROM OTHER USERS (PREFERENCES)
+
+ <div class="row ">
+        <div class="col-sm">MARITAL STATUS</div>
+        <div class="col-sm">HAVE KIDS</div>
+        <div class="col-sm">WANT KIDS</div>
+    </div>
+    
+    <div class="row ">
+        <div class="col-sm">EDUCATION</div>
+        <div class="col-sm">BODY TYPE</div>
+        <div class="col-sm">HEIGHT</div>
+    </div>
+
+    <div class="row ">
+        <div class="col-sm">RELIGION</div>
+        <div class="col-sm">SMOKING</div>
+        <div class="col-sm">DRINKING</div>
+    </div>
+    <hr>
+
+    <div class="row ">
+        <div class="col-sm">ETNICITY</div>
+        <div class="col-sm">INCOME</div>
+    </div>
+    <hr>
+
+}
