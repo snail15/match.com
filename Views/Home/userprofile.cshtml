@@ -5,6 +5,7 @@
     <div class="col-sm-6">
         <div class="registration-card">
             <img class="logo" src="~/images/match-logo-img.png" alt="company logo">
+            <h4><a href='/logout'>Log Out</a></h4><br><br><br>
             <h3>About You</h3>
             @{
                 if(ViewBag.Error != null){
@@ -38,36 +39,13 @@
                         </select>
                     </div>
                 </div>
-               
-                <div class="form-group">
-                    <label for="religion" class="col-sm-2 control-label">Religion</label>
-                    <div class="col-sm-10">
-                        <select name="religion" class="form-control" id="religion">
-                            <option value="1">Buddhism</option>
-                            <option value="2">Christianity</option>
-                            <option value="3">Islam</option>
-                            <option value="4">Other</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="smoke" class="col-sm-2 control-label">Smoke</label>
                     <div class="col-sm-10">
                         <select name="smoke" class="form-control" id="smoke">
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="ethinicity" class="col-sm-2 control-label">Ethinicity</label>
-                    <div class="col-sm-10">
-                        <select name="ethinicity" class="form-control" id="ethinicity">
-                            <option value="1">Asian</option>
-                            <option value="2">African-American</option>
-                            <option value="3">White</option>
-                            <option value="4">Latino</option>
-                            <option value="5">Other</option>
+                            <option value="Dealbreaker">No, and it is a Dealbreaker</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
                         </select>
                     </div>
                 </div>
@@ -75,10 +53,8 @@
                     <label for="relationship" class="col-sm-2 control-label">Relationship</label>
                     <div class="col-sm-10">
                         <select name="relationship" class="form-control" id="relationship">
-                            <option value="1">Married</option>
-                            <option value="2">Seperated</option>
-                            <option value="3">Never Married</option>
-                            <option value="4">Divorced</option>
+                            <option value="Single">Single</option>
+                            <option value="Divorced">Divorced</option>
                         </select>
                     </div>
                 </div>
@@ -86,8 +62,9 @@
                     <label for="kids" class="col-sm-2 control-label">Kids</label>
                     <div class="col-sm-10">
                         <select name="kids" class="form-control" id="kids">
-                            <option value="0">Have No Kids</option>
-                            <option value="1">Have Kids</option>
+                            <option value="No">Don't have kids</option>
+                            <option value="Exspouse">Have Kids, they live with ex-spouse</option>
+                            <option value="Yes">Have Kids, they live with me</option>
                         </select>
                     </div>
                 </div>
@@ -95,17 +72,22 @@
                     <label for="bodytype" class="col-sm-2 control-label">Body Type</label>
                     <div class="col-sm-10">
                         <select name="bodytype" class="form-control" id="bodytype">
-                            <option value="1">Slim</option>
-                            <option value="2">Average</option>
-                            <option value="3">Above Average</option>
-                            <option value="4">Big</option>
+                            <option value="Slim">Slim</option>
+                            <option value="Fit">Fit</option>
+                            <option value="Gym">Gym would help</option>
+                            <option value="Lovehandles">Love handles included</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="biodetail" class="col-sm-2 control-label">Enter a short description about yourself:</label>
+                    <div class="col-sm-10">
+                        <textarea name="biodetail" class="form-control" id="biodetail"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Next</button>
             </form>
         </div>
-
     </div>
     <div class="col-sm-3"></div>
 </div>

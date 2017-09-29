@@ -6,10 +6,24 @@ namespace match.Models
     public class UserprofileViewModel : BaseEntity 
     {
         [Key]
-        public int userprofileId {get;set;}
+        public int UserprofileId {get;set;}
 //          
         [Required(ErrorMessage="Cannot create a profile for a non-user")]
         public int UserId {get; set;}
+
+        [Required(ErrorMessage="Cannot create a profile for a non-user")]
+        public int UserdetailId {get; set;}
+        public string bodytype {get;set;}
+        public string smoke {get; set;}
+        public int? salary {get; set;}
+        public string height {get;set;}
+        // public string weight {get;set;}
+        public string Relationship { get; set; }
+        public string kid {get;set;}
+        public string drink {get;set;}
+        public int? age {get;set;}
+        public string biodetail {get;set;}
+        public string profilepic {get;set;}
 
 //         [Required(ErrorMessage="Cannot create a profile for a non-user")]
 //         // [Range(1, Int32.MaxValue, ErrorMessage="The value has to be a number")]

@@ -62,6 +62,8 @@ namespace match.Controllers
                     email = model.email,
                     password = model.password,
                     birthday = model.birthday,
+                    created_at = DateTime.Now,
+                    updated_at = DateTime.Now,
                 };
                 PasswordHasher<User> hasher = new PasswordHasher<User>();
                 newUser.password = hasher.HashPassword(newUser, model.password);
@@ -153,59 +155,93 @@ namespace match.Controllers
             }
             else
             {
-
-                Userdetail userdetail = _context.Userdetails.SingleOrDefault(detail => detail.UserId == userId);
-                if(userdetail == null)
+                if(ModelState.IsValid)
                 {
-                    // TempData["UsernameError"] = ViewBag.UsernameError;
+                    Userdetail newDetail = new Userdetail
+                    {
+                        
+                        UserId = (int)userId,
+                        gender = model.gender,
+                        givenname = model.givenname,
+                        middleinitial = model.middleinitial,
+                        surname = model.surname,
+                        streetaddress = model.streetaddress,
+                        city = model.city,
+                        state = model.state,
+                        zipcode = model.zip.ToString(),
+                        created_at = DateTime.Now,
+                        updated_at = DateTime.Now,
+                    };
+                    _context.Add(newDetail);
+                    _context.SaveChanges();
                     return RedirectToAction("Profile");
-                }
-                else
+                } 
+                else 
                 {
-                    if(ModelState.IsValid)
-                    {
-                        // DateTime now = DateTime.Today;
-                        // int age = userdetail.
-                        // // int age = now.Year - _context;
-                        // if (now < model.birthday.AddYears(age))
-                        // { 
-                        // age--;
-                        // }
-                        Userdetail newDetail = new Userdetail
-                        {
-                            UserId = (int)userId,
-                            gender = model.gender,
-                            givenname = model.givenname,
-                            middleinitial = model.middleinitial,
-                            surname = model.surname,
-                            streetaddress = model.streetaddress,
-                            city = model.city,
-                            state = model.state,
-                            zipcode = model.zip.ToString(),
-                        };
-                        _context.Add(newDetail);
-                        _context.SaveChanges();
-                        return RedirectToAction("Profile");
-                    } 
-                    else 
-                    {
-                        return View("generalinfo");
-                    }
+                    return View("generalinfo");
                 }
             }
         }
         [HttpGet]
         [Route("profile")]
+        public IActionResult Profile() 
+        {
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            if(userId == null)
+            {
+                TempData["LogErrors"] = "You need to log in first";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Userprofile userprofile = _context.Userprofiles.SingleOrDefault(profile => profile.UserId == userId);
+                if(userprofile == null)
+                {
+                    // TempData["UsernameError"] = ViewBag.UsernameError;
+                    return View("userprofile");
+                }
+                else
+                {
+                    return RedirectToAction("Dashboard");
+                }
+            }
+        }
+        [HttpPost]
+        [Route("profile")]
         public IActionResult Profile(UserprofileViewModel model) 
         {
-            // DateTime now = DateTime.Today;
-            // int age = now.Year - model.birthday.Year;
-            // if (now < model.birthday.AddYears(age))
-            // { 
-            //     age--;
-            // }
-            // ViewBag.statuspage = "weight";
-            return View("userprofile");
+            int? userId = HttpContext.Session.GetInt32("currentUserId");
+            if(userId == null)
+            {
+                TempData["LogErrors"] = "You need to log in first";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                    if(ModelState.IsValid)
+                    {
+                        Userprofile newProfile = new Userprofile
+                        {
+                            UserId = (int)userId,
+                            UserdetailId = (int)userId,
+                            bodytype = model.bodytype,
+                            smoke = model.smoke,
+                            drink = model.drink,
+                            kid = model.kid,
+                            biodetail = model.biodetail,
+                            profilepic = model.profilepic,
+                            created_at = DateTime.Now,
+                            updated_at = DateTime.Now,
+                        };
+                        _context.Add(newProfile);
+                        _context.SaveChanges();
+                        return RedirectToAction("Profile");
+                    }
+                else
+                {
+                    return RedirectToAction("Dashboard");
+                }
+            }
         }
 
 

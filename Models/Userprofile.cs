@@ -14,7 +14,6 @@ namespace match.Models
         public string Relationship { get; set; }
         public string kid {get;set;}
         public string drink {get;set;}
-        public int? age {get;set;}
         public string biodetail {get;set;}
         public string profilepic {get;set;}
         //-----------------------------
