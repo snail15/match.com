@@ -8,8 +8,8 @@ using match.Models;
 namespace match.Migrations
 {
     [DbContext(typeof(MatchContext))]
-    [Migration("20170928211104_second")]
-    partial class second
+    [Migration("20170928215620_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,34 @@ namespace match.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("match.Models.Preference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BodyType");
+
+                    b.Property<int>("Drink");
+
+                    b.Property<int>("Ethnicity");
+
+                    b.Property<int>("Height");
+
+                    b.Property<int>("Kid");
+
+                    b.Property<int>("Relationship");
+
+                    b.Property<int>("Religion");
+
+                    b.Property<int>("Smoke");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Preferences");
                 });
 
             modelBuilder.Entity("match.Models.User", b =>
