@@ -353,7 +353,5 @@ namespace match.Controllers
                 return RedirectToAction("Index");
             }
         }
-
-
     }
 }
